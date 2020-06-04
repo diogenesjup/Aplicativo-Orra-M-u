@@ -1,0 +1,212 @@
+<jsv-header>
+	<button-header-left></button-header-left>
+       Loja
+    <button-header-right></button-header-right>
+</jsv-header>
+<jsv-content class="inicio">
+   
+            <!-- PAGE CONTENT FIM -->
+            <div class="page-content">
+                 
+                  <!-- HEADER -->
+                  <header>
+                    <div class="container">
+                      
+                      <div class="row">
+                        
+                        <div class="col-3 coluna-um">
+                           <a href="javascript:void(0)" title="Voltar para a página de login" onclick="voltarAoInicio();">
+                             <i class="fa fa-angle-left"></i>
+                           </a>
+                        </div>
+
+                        <div class="col-6 coluna-dois">
+                          <a href="javascript:void(0)" title="Orra Meu - Sua praia na Mooca" style="line-height: 18px;display: block;padding-top: 2px;">
+                            Loja
+                          </a>
+                        </div>
+
+                        <div class="col-3 coluna-tres" onclick="notificacoes()">
+                           <div class="profile-picture" style="background: url('images/profile-picture.png') #f4f4f4 no-repeat;background-size: cover;background-position: center center;">
+                              &nbsp;
+                           </div>
+                           <span class="numeroNotificacoes">2</span>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </header>
+                  <!-- HEADER -->
+
+
+                  <!-- CONTEÚDO -->
+                  <div class="corpo-comum">
+                    <div class="conteudo areas-login-cadastro area-contrato area-loja">                                               
+                                                             
+                          
+
+                          <!-- FILDS LOJA -->
+                          <div class="row fields-loja">
+                             <div class="col-9">
+                                <input type="text" id="buscaProdutos" class="form-control" placeholder="Pesquisar" onkeyup="filtroProdutos();">
+                             </div>
+                             <div class="col-3">
+                                 <a href="javascript:void(0)" id="menuCarrinho" title="Carrinho">
+                                    <img src="images/carrinho.png" alt="Carrinho">
+                                    <span>0</span>
+                                 </a>
+                             </div>
+                          </div>
+                          <!-- FILDS LOJA -->
+
+                          <!-- LOJA -->
+                          <div class="loja">
+                              
+                              <div class="row lista-produtos" id="listagemDeProdutos">
+                                
+                                 <!-- PRODUTO -->
+                                 <div class="col-6">
+                                    <div class="produto">
+                                       <!-- FOTO PRODUTO -->
+                                       <div class="foto-produto" style="background: url('images/produto1.png') transparent no-repeat;background-size: auto 80%;background-position: center center; ">
+                                          <a href="javascript:void(0)" onclick="detalheProduto(1)" title="Clique para ver detalhes sobre o produto">
+                                             &nbsp;
+                                          </a>
+                                       </div>
+                                       <!-- FOTO PRODUTO -->
+                                       <h2>
+                                         Camisa UV Manda Longa<br clear="both">
+                                         <b>R$ 150,00</b>
+                                       </h2>
+                                    </div>
+                                 </div>
+                                 <!-- PRODUTO -->
+
+                                 <!-- PRODUTO -->
+                                 <div class="col-6">
+                                    <div class="produto">
+                                       <!-- FOTO PRODUTO -->
+                                       <div class="foto-produto" style="background: url('images/produto2.png') transparent no-repeat;background-size: auto 80%;background-position: center center; ">
+                                          <a href="javascript:void(0)" onclick="detalheProduto(1)" title="Clique para ver detalhes sobre o produto">
+                                             &nbsp;
+                                          </a>
+                                       </div>
+                                       <!-- FOTO PRODUTO -->
+                                       <h2>
+                                         Bola de Futvôlei Mikasa<br clear="both">
+                                         <b>R$ 120,00</b>
+                                       </h2>
+                                    </div>
+                                 </div>
+                                 <!-- PRODUTO -->
+
+
+                                 <!-- PRODUTO -->
+                                 <div class="col-6">
+                                    <div class="produto">
+                                       <!-- FOTO PRODUTO -->
+                                       <div class="foto-produto" style="background: url('images/produto3.png') transparent no-repeat;background-size: auto 80%;background-position: center center; ">
+                                          <a href="javascript:void(0)" onclick="detalheProduto(1)" title="Clique para ver detalhes sobre o produto">
+                                             &nbsp;
+                                          </a>
+                                       </div>
+                                       <!-- FOTO PRODUTO -->
+                                       <h2>
+                                         Boné Futvôlei<br clear="both">
+                                         <b>R$ 150,00</b>
+                                       </h2>
+                                    </div>
+                                 </div>
+                                 <!-- PRODUTO -->
+
+
+                                 <!-- PRODUTO -->
+                                 <div class="col-6">
+                                    <div class="produto">
+                                       <!-- FOTO PRODUTO -->
+                                       <div class="foto-produto" style="background: url('images/produto4.png') transparent no-repeat;background-size: auto 80%;background-position: center center; ">
+                                          <a href="javascript:void(0)" onclick="detalheProduto(1)" title="Clique para ver detalhes sobre o produto">
+                                             &nbsp;
+                                          </a>
+                                       </div>
+                                       <!-- FOTO PRODUTO -->
+                                       <h2>
+                                         Sunga Futvôlei Preta<br clear="both">
+                                         <b>R$ 60,00</b>
+                                       </h2>
+                                    </div>
+                                 </div>
+                                 <!-- PRODUTO -->
+
+
+                                 <!-- PRODUTO -->
+                                 <div class="col-6">
+                                    <div class="produto">
+                                       <!-- FOTO PRODUTO -->
+                                       <div class="foto-produto" style="background: url('images/produto5.png') transparent no-repeat;background-size: auto 80%;background-position: center center; ">
+                                          <a href="javascript:void(0)" onclick="detalheProduto(1)" title="Clique para ver detalhes sobre o produto">
+                                             &nbsp;
+                                          </a>
+                                       </div>
+                                       <!-- FOTO PRODUTO -->
+                                       <h2>
+                                         Kit Tênis de Praia<br clear="both">
+                                         <b>R$ 210,00</b>
+                                       </h2>
+                                    </div>
+                                 </div>
+                                 <!-- PRODUTO -->
+
+
+                                 <!-- PRODUTO -->
+                                 <div class="col-6">
+                                    <div class="produto">
+                                       <!-- FOTO PRODUTO -->
+                                       <div class="foto-produto" style="background: url('images/produto6.png') transparent no-repeat;background-size: auto 80%;background-position: center center; ">
+                                          <a href="javascript:void(0)" onclick="detalheProduto(1)" title="Clique para ver detalhes sobre o produto">
+                                             &nbsp;
+                                          </a>
+                                       </div>
+                                       <!-- FOTO PRODUTO -->
+                                       <h2>
+                                         Bermuda Futvôlei Brasil<br clear="both">
+                                         <b>R$ 120,00</b>
+                                       </h2>
+                                    </div>
+                                 </div>
+                                 <!-- PRODUTO -->
+
+                                 <div class="col-12 produto" id="buscaVazia" style="padding-left: 5px;padding-right: 5px;display: none;">
+                                    <p style="text-align: center;padding-top: 30px;font-size: 14px;">Nenhum resultado encontrado</p>
+                                 </div>
+
+                              </div>
+
+                          </div>
+                          <!-- LOJA -->
+
+                                
+                                 
+
+                                 
+
+                    </div>
+                  </div>
+                  <!-- CONTEÚDO -->
+                  
+
+                  
+              
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+
+              
+               
+            </div>
+            <!-- PAGE CONTENT FIM -->
+    
+</jsv-content>

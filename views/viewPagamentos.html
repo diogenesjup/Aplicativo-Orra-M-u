@@ -1,0 +1,287 @@
+<jsv-header>
+	<button-header-left></button-header-left>
+       Pagamentos
+    <button-header-right></button-header-right>
+</jsv-header>
+<jsv-content class="inicio">
+   
+            <!-- PAGE CONTENT FIM -->
+            <div class="page-content">
+                 
+                  <!-- HEADER -->
+                  <header>
+                    <div class="container">
+                      
+                      <div class="row">
+                        
+                        <div class="col-3 coluna-um">
+                           <a href="javascript:void(0)" title="Voltar para a página de login" onclick="voltarAoInicio();">
+                             <i class="fa fa-angle-left"></i>
+                           </a>
+                        </div>
+
+                        <div class="col-6 coluna-dois">
+                          <a href="javascript:void(0)" title="Orra Meu - Sua praia na Mooca" style="line-height: 18px;display: block;padding-top: 2px;">
+                            Pagamentos
+                          </a>
+                        </div>
+
+                        <div class="col-3 coluna-tres" onclick="notificacoes()">
+                           <div class="profile-picture" style="background: url('images/profile-picture.png') #f4f4f4 no-repeat;background-size: cover;background-position: center center;">
+                              &nbsp;
+                           </div>
+                           <span class="numeroNotificacoes">2</span>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </header>
+                  <!-- HEADER -->
+
+
+                  <!-- CONTEÚDO -->
+                  <div class="corpo-comum">
+                    <div class="container conteudo areas-login-cadastro area-contrato area-view-pagamentos">                                               
+                                                            
+                                 <!-- OWL PAGAMENTOS -->
+                                 <div id="listaDepagamentos" class="owl-carousel">
+
+                                       <!-- COLUNA / CAIXA -->
+                                       <div class="item">
+                                         <div class="caixa caixa-tres alertas-verdes">
+                                           <div class="header-caixa">
+                                             <h4>Modalidades / SET</h4>
+                                           </div>
+                                           <h3>30/09<br>R$ 240,00</h3>
+                                           <a href="#" title="alerta">
+                                              <i class="fa fa-check-circle fa-3x" aria-hidden="true"></i>
+                                           </a>
+                                         </div>
+                                       </div>
+                                       <!-- COLUNA / CAIXA -->
+
+                                       <!-- COLUNA / CAIXA -->
+                                       <div class="item">
+                                         <div class="caixa caixa-tres alertas-vermelhos">
+                                           <div class="header-caixa">
+                                             <h4>Modalidades / OUT</h4>
+                                           </div>
+                                           <h3>30/10<br>R$ 240,00</h3>
+                                           <a href="#" title="alerta">
+                                              <i class="fa fa-exclamation-circle fa-3x" aria-hidden="true"></i>
+                                           </a>
+                                         </div>
+                                       </div>
+                                       <!-- COLUNA / CAIXA -->
+
+                                       <!-- COLUNA / CAIXA -->
+                                       <div class="item">
+                                         <div class="caixa caixa-tres alertas-vermelhos">
+                                           <div class="header-caixa">
+                                             <h4>Modalidades / NOV</h4>
+                                           </div>
+                                           <h3>30/11<br>R$ 240,00</h3>
+                                           <a href="#" title="alerta">
+                                              <i class="fa fa-exclamation-circle fa-3x" aria-hidden="true"></i>
+                                           </a>
+                                         </div>
+                                       </div>
+                                       <!-- COLUNA / CAIXA -->
+
+
+                                       <!-- COLUNA / CAIXA -->
+                                       <div class="item">
+                                         <div class="caixa caixa-tres">
+                                           <div class="header-caixa">
+                                             <h4>Modalidades / DEZ</h4>
+                                           </div>
+                                           <h3>30/12<br>R$ 240,00</h3>
+                                           <small>Não disponível</small>
+                                         </div>
+                                       </div>
+                                       <!-- COLUNA / CAIXA -->
+
+
+                                   
+
+                                 </div>
+                                 <div class="container" style="text-align: right;padding-top: 14px;width: 100%;max-width: 100%;position: relative;z-index: 999;">
+                                       <ul id="carousel-custom-dots" class="owl-dots"> 
+                                          
+                                          <li class="owl-dot">&nbsp;</li>
+                                          <li class="owl-dot">&nbsp;</li>
+                                          
+                                        </ul>                 
+                                  </div>
+                                 <!-- OWL PAGAMENTOS -->
+                                  
+
+                                 <h3>Forma de pagamento</h3>   
+
+                                 <!-- FORMAS DE PAGAMENTO -->
+                                 <div class="formas-de-pagamento">
+                                     
+                                     <div class="accordion" id="formasDePagamentoCollapse">
+                                          
+                                          <!-- FORMA DE PAGAMENTO -->
+                                          <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                              <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseCartaoCredito" aria-expanded="true" aria-controls="collapseCartaoCredito">
+                                                  <div class="custom-control custom-switch">
+                                                    <input type="radio" id="customRadio21" name="customRadio" class="custom-control-input" checked>
+                                                    <label class="custom-control-label" for="customRadio21">Cartão de crédito</label>
+                                                  </div>
+                                                </button>
+                                              </h2>
+                                            </div>
+
+                                            <div id="collapseCartaoCredito" class="collapse" aria-labelledby="headingOne" data-parent="#formasDePagamentoCollapse">
+                                              <div class="card-body formularios-dados-pagamento">
+                                                   
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                           <input type="text" id="pagtoCCNumero" class="form-control" placeholder="Número do cartão">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                           <input type="text" id="pagtoCCNome" class="form-control" placeholder="Nome impresso no cartão">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                           <input type="text" id="pagtoCCValidade" class="form-control" placeholder="DD/AA">
+                                                        </div>
+                                                        <div class="col-4">
+                                                           <input type="text" id="pagtoCCCvv" class="form-control" placeholder="CVV">
+                                                        </div>
+                                                        <div class="col-4">
+                                                           <img src="images/visa.png" alt="Bandeira do cartão" id="bandeiraCartao">
+                                                        </div>
+                                                    </div>
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- FORMA DE PAGAMENTO -->
+
+                                          <!-- FORMA DE PAGAMENTO -->
+                                          <div class="card">
+                                            <div class="card-header" id="headingTwo">
+                                              <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseCartaoDebito" aria-expanded="false" aria-controls="collapseCartaoDebito">
+                                                  <div class="custom-control custom-switch">
+                                                    <input type="radio" id="customRadio22" name="customRadio" class="custom-control-input">
+                                                    <label class="custom-control-label" for="customRadio22">Cartão de débito</label>
+                                                  </div>
+                                                </button>
+                                              </h2>
+                                            </div>
+                                            <div id="collapseCartaoDebito" class="collapse" aria-labelledby="headingTwo" data-parent="#formasDePagamentoCollapse">
+                                              <div class="card-body formularios-dados-pagamento">
+                                                   
+
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                           <input type="text" id="pagtoCDNumero" class="form-control" placeholder="Número do cartão">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                           <input type="text" id="pagtoCDNome" class="form-control" placeholder="Nome impresso no cartão">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                           <input type="text" id="pagtoCDValidade" class="form-control" placeholder="DD/AA">
+                                                        </div>
+                                                        <div class="col-4">
+                                                           <input type="text" id="pagtoCDCvv" class="form-control" placeholder="CVV">
+                                                        </div>
+                                                        <div class="col-4">
+                                                           <img src="images/master.png" alt="Bandeira do cartão" id="bandeiraCartao">
+                                                        </div>
+                                                    </div>
+
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- FORMA DE PAGAMENTO -->
+
+                                          <!-- FORMA DE PAGAMENTO -->
+                                          <div class="card">
+                                            <div class="card-header" id="headingThree">
+                                              <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseBoleto" aria-expanded="false" aria-controls="collapseBoleto">
+                                                  <div class="custom-control custom-switch">
+                                                    <input type="radio" id="customRadio23" name="customRadio" class="custom-control-input">
+                                                    <label class="custom-control-label" for="customRadio23">Boleto bancário</label>
+                                                  </div>
+                                                </button>
+                                              </h2>
+                                            </div>
+                                            <div id="collapseBoleto" class="collapse" aria-labelledby="headingThree" data-parent="#formasDePagamentoCollapse">
+                                              <div class="card-body formularios-dados-pagamento">
+                                                
+                                                        <div class="row">
+                                                              <div class="col-12">
+                                                                 <input type="text" id="pagtoBBNumeroCPF" class="form-control" placeholder="CPF do pagador">
+                                                              </div>
+                                                        </div>
+                                                        <div class="row">
+                                                              <div class="col-12">
+                                                                 <input type="text" id="pagtoBBNome" class="form-control" placeholder="Nome completo do pagador">
+                                                              </div>
+                                                        </div>
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <!-- FORMA DE PAGAMENTO -->
+
+
+                                 </div>
+                                 <!-- FORMAS DE PAGAMENTO -->
+
+
+
+                                 <div class="row">
+                                    
+
+                                    <div class="col-12">
+                                      <a href="javascript:void(0)" title="Realizar pagamento" class="btn btn-primary">
+                                        Realizar pagamento
+                                      </a>
+                                    </div>
+                                 </div>
+
+                                 <h3 class="h3-disclamer">Os dados de pagamento não são armazenados e não são utilizados fora de ambiente seguro</h3>   
+                                 
+
+                         
+
+                    </div>
+                  </div>
+                  <!-- CONTEÚDO -->
+                  
+
+                  
+              
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+
+              
+               
+            </div>
+            <!-- PAGE CONTENT FIM -->
+    
+</jsv-content>

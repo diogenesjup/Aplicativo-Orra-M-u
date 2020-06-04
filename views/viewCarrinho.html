@@ -1,0 +1,238 @@
+<jsv-header>
+	<button-header-left></button-header-left>
+       Loja > Carrinho
+    <button-header-right></button-header-right>
+</jsv-header>
+<jsv-content class="inicio">
+   
+            <!-- PAGE CONTENT FIM -->
+            <div class="page-content">
+                 
+                  <!-- HEADER -->
+                  <header>
+                    <div class="container">
+                      
+                      <div class="row">
+                        
+                        <div class="col-3 coluna-um">
+                           <a href="javascript:void(0)" title="Voltar para a página de login" onclick="detalheProduto(1);">
+                             <i class="fa fa-angle-left"></i>
+                           </a>
+                        </div>
+
+                        <div class="col-6 coluna-dois">
+                          <a href="javascript:void(0)" title="Orra Meu - Sua praia na Mooca" style="line-height: 18px;display: block;padding-top: 2px;">
+                            Carrinho
+                          </a>
+                        </div>
+
+                        <div class="col-3 coluna-tres" onclick="notificacoes()">
+                           <div class="profile-picture" style="background: url('images/profile-picture.png') #f4f4f4 no-repeat;background-size: cover;background-position: center center;">
+                              &nbsp;
+                           </div>
+                           <span class="numeroNotificacoes">2</span>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </header>
+                  <!-- HEADER -->
+
+
+                  <!-- CONTEÚDO -->
+                  <div class="corpo-comum">
+                    <div class="conteudo areas-login-cadastro area-contrato area-loja">                                               
+                                                             
+                          
+
+                          <!-- FILDS LOJA -->
+                          <div class="row fields-loja">
+                             <div class="col-9">
+                                <input type="text" id="buscaProdutos" class="form-control" placeholder="Pesquisar" onkeyup="filtroProdutos();">
+                             </div>
+                             <div class="col-3">
+                                 <a href="javascript:void(0)" id="menuCarrinho" title="Carrinho">
+                                    <img src="images/carrinho.png" alt="Carrinho">
+                                    <span>0</span>
+                                 </a>
+                             </div>
+                          </div>
+                          <!-- FILDS LOJA -->
+
+                          <!-- LOJA -->
+                          <div class="loja">
+                              
+                              <div class="row lista-produtos" id="listagemDeProdutosCarrinho">
+                                
+                                 <!-- PRODUTOS CARRINHO -->
+                                 <div class="col-12 carrinho">
+                                    
+
+                                    <!-- PRODUTO --> 
+                                    <div class="row produto">
+                                       <!-- FOTO PRODUTO -->
+                                       <div class="foto-produto" style="background: url('images/produto1.png') transparent no-repeat;background-size: auto 80%;background-position: center center; ">
+                                          <a href="javascript:void(0)" onclick="detalheProduto(1)" title="Clique para ver detalhes sobre o produto">
+                                             &nbsp;
+                                          </a>
+                                       </div>
+                                       <!-- FOTO PRODUTO -->
+                                       <!-- DADOS E AÇÕES PRODUTO -->
+                                       <div class="dados-acoes-produto">
+                                          <h2>
+                                             Camisa UV Manda Longa<br clear="both">
+                                             <b>Cor: Amerelo</b>
+                                          </h2>
+                                          <div class="form-group opcoes-variacao-produto">
+                                            <select class="form-control" id="variacaoId1">
+                                              <option value="">G</option>
+                                            </select>
+                                            <select class="form-control" id="variacaoId2">
+                                              <option value="">1</option>
+                                            </select>
+                                            <span class="precoProdutoCarrinho">R$ 200.00</span>
+                                          </div>
+                                       </div>
+                                       <!-- DADOS E AÇÕES PRODUTO -->
+                                       <div class="remover-produto-carrinho">
+                                       </div>
+                                    </div>
+                                    <!-- PRODUTO -->
+
+                                    <!-- PRODUTO --> 
+                                    <div class="row produto">
+                                       <!-- FOTO PRODUTO -->
+                                       <div class="foto-produto" style="background: url('images/produto2.png') transparent no-repeat;background-size: auto 80%;background-position: center center; ">
+                                          <a href="javascript:void(0)" onclick="detalheProduto(1)" title="Clique para ver detalhes sobre o produto">
+                                             &nbsp;
+                                          </a>
+                                       </div>
+                                       <!-- FOTO PRODUTO -->
+                                       <!-- DADOS E AÇÕES PRODUTO -->
+                                       <div class="dados-acoes-produto">
+                                          <h2>
+                                             Camisa UV Manda Longa<br clear="both">
+                                             <b>Cor: Amerelo</b>
+                                          </h2>
+                                          <div class="form-group opcoes-variacao-produto">
+                                            <select class="form-control" id="variacaoId1">
+                                              <option value="">G</option>
+                                            </select>
+                                            <select class="form-control" id="variacaoId2">
+                                              <option value="">1</option>
+                                            </select>
+                                            <span class="precoProdutoCarrinho">R$ 200.00</span>
+                                          </div>
+                                       </div>
+                                       <!-- DADOS E AÇÕES PRODUTO -->
+                                       <div class="remover-produto-carrinho">
+                                       </div>
+                                    </div>
+                                    <!-- PRODUTO -->
+
+
+                                    <!-- PRODUTO --> 
+                                    <div class="row produto">
+                                       <!-- FOTO PRODUTO -->
+                                       <div class="foto-produto" style="background: url('images/produto1.png') transparent no-repeat;background-size: auto 80%;background-position: center center; ">
+                                          <a href="javascript:void(0)" onclick="detalheProduto(1)" title="Clique para ver detalhes sobre o produto">
+                                             &nbsp;
+                                          </a>
+                                       </div>
+                                       <!-- FOTO PRODUTO -->
+                                       <!-- DADOS E AÇÕES PRODUTO -->
+                                       <div class="dados-acoes-produto">
+                                          <h2>
+                                             Camisa UV Manda Longa<br clear="both">
+                                             <b>Cor: Amerelo</b>
+                                          </h2>
+                                          <div class="form-group opcoes-variacao-produto">
+                                            <select class="form-control" id="variacaoId1">
+                                              <option value="">G</option>
+                                            </select>
+                                            <select class="form-control" id="variacaoId2">
+                                              <option value="">1</option>
+                                            </select>
+                                            <span class="precoProdutoCarrinho">R$ 200.00</span>
+                                          </div>
+                                       </div>
+                                       <!-- DADOS E AÇÕES PRODUTO -->
+                                       <div class="remover-produto-carrinho">
+                                       </div>
+                                    </div>
+                                    <!-- PRODUTO -->
+
+
+                                    
+                                 </div>
+                                 <!-- PRODUTOS CARRINHO -->
+
+                                 <!-- RESUMO COMPRA -->
+                                 <div class="resumo-compra">
+
+                                   <!-- LINHA 1 -->
+                                   <div class="row linha-1">
+                                     <div class="col-6 coluna-um">
+                                       Subtotal
+                                     </div>
+                                     <div class="col-6 coluna-dois">
+                                       R$ 270.00
+                                     </div>
+                                   </div>
+                                   <!-- LINHA 1 -->
+
+                                   <!-- LINHA 2 -->
+                                   <div class="row linha-2">
+                                     <div class="col-6 coluna-um">
+                                       Retirar na Loja Física
+                                     </div>
+                                     <div class="col-6 coluna-dois">
+                                       <small>(Grátis)</small>
+                                     </div>
+                                   </div>
+                                   <!-- LINHA 2 -->
+
+                                 </div>
+                                 <!-- RESUMO COMPRA -->
+
+                                 <h3 id="totalFinalCarrinho">Total <span>R$ 270.00</span></h3>
+
+                                 
+
+
+
+
+                              </div>
+
+                          </div>
+                          <!-- LOJA -->
+
+                                
+                                 
+
+                                 
+
+                    </div>
+                  </div>
+                  <!-- CONTEÚDO -->
+              
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+
+                  <!-- IR PARA O PAGAMENTO -->
+                  <div class="adicionar-ao-carrinho inner-carrinho">
+                    <a href="javascript:void(0)" data-id="1" title="Ir para o pagamento">
+                        Finalizar <img src="images/finalizar-compra.png" alt="Finalizar compra">
+                    </a>
+                  </div>
+                  <!-- IR PARA O PAGAMENTO -->
+             
+               
+            </div>
+            <!-- PAGE CONTENT FIM -->
+    
+</jsv-content>

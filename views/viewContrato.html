@@ -1,0 +1,373 @@
+<jsv-header>
+	<button-header-left></button-header-left>
+       Cadastro (Edição)
+    <button-header-right></button-header-right>
+</jsv-header>
+<jsv-content class="inicio">
+   
+            <!-- PAGE CONTENT FIM -->
+            <div class="page-content">
+                 
+                  <!-- HEADER -->
+                  <header>
+                    <div class="container">
+                      
+                      <div class="row">
+                        
+                        <div class="col-3 coluna-um">
+                           <a href="javascript:void(0)" title="Voltar para a página de login" onclick="voltarAoInicio();">
+                             <i class="fa fa-angle-left"></i>
+                           </a>
+                        </div>
+
+                        <div class="col-6 coluna-dois">
+                          <a href="javascript:void(0)" title="Orra Meu - Sua praia na Mooca" style="line-height: 18px;display: block;padding-top: 2px;">
+                           Seu Contrato
+                          </a>
+                        </div>
+
+                        <div class="col-3 coluna-tres" onclick="notificacoes()">
+                           <div class="profile-picture" style="background: url('images/profile-picture.png') #f4f4f4 no-repeat;background-size: cover;background-position: center center;">
+                              &nbsp;
+                           </div>
+                           <span class="numeroNotificacoes">2</span>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </header>
+                  <!-- HEADER -->
+
+
+                  <!-- CONTEÚDO -->
+                  <div class="corpo-comum">
+                    <div class="container conteudo areas-login-cadastro area-contrato">                                               
+
+                        
+                                 <!-- LINHA CPC --> 
+                                 <div id="cpc1" class="row caixa-pai-contrato contadores-de-caixa">
+                                      <!-- ITEM CONTRATO -->
+                                      <div class="caixa-contrato">
+                                         <div class="row">
+                                            <!-- COLUNA LABEL -->
+                                            <div class="col-sm-7 col-7 coluna-um">
+                                               Modalidade:
+                                            </div>
+                                            <div class="col-sm-5 col-5 coluna-dois">
+                                               Futvôlei <a href="javascript:void(0)" onclick="confirmarRemoverModalidade();"><img src="images/fechar-modalidade.png" alt="Remover modalidade"></a>
+                                            </div>
+                                            <!-- COLUNA LABEL -->
+                                         </div>
+                                      </div>
+                                      <!-- ITEM CONTRATO -->
+                                      <!-- ITEM CONTRATO -->
+                                      <div class="caixa-contrato">
+                                         <div class="row">
+                                            <!-- COLUNA LABEL -->
+                                            <div class="col-sm-7 col-7 coluna-um">
+                                               Aulas por semana:
+                                            </div>
+                                            <div class="col-sm-5 col-5 coluna-dois">
+                                               02 <a href="javascript:void(0)" title="Editar aulas por semana" onclick="editarAulasPorSemana();"><img src="images/editar-modalidade.png" alt="Editar modalidade"></a>
+                                            </div>
+                                            <!-- COLUNA LABEL -->
+                                         </div>
+                                      </div>
+                                      <!-- ITEM CONTRATO -->
+                                      
+                                      <!-- ADICIONAR MODALIDADE -->
+                                      <div class="add-mais-modalidades">
+                                          <a href="javascript:void(0)" title="Adicionar Modalidade" onclick="adicionarNovaModalidade();">
+                                             <img src="images/adicionar-modalidade.png" alt="Adicionar modalidade">
+                                          </a>       
+                                      </div>
+                                      <!-- ADICIONAR MODALIDADE -->
+                                 
+
+                                 </div>
+                                 <!-- LINHA CPC --> 
+
+
+
+
+
+                                 <!-- LINHA CPC --> 
+                                 <div id="cpc2" class="row caixa-pai-contrato contadores-de-caixa ultima-caixa">
+                                      <!-- ITEM CONTRATO -->
+                                      <div class="caixa-contrato">
+                                         <div class="row">
+                                            <!-- COLUNA LABEL -->
+                                            <div class="col-sm-6 col-6 coluna-um">
+                                               Modalidade:
+                                            </div>
+                                            <div class="col-sm-6 col-6 coluna-dois">
+                                               Funcional <a href="javascript:void(0)"><img src="images/fechar-modalidade.png" alt="Remover modalidade"></a>
+                                            </div>
+                                            <!-- COLUNA LABEL -->
+                                         </div>
+                                      </div>
+                                      <!-- ITEM CONTRATO -->
+                                      <!-- ITEM CONTRATO -->
+                                      <div class="caixa-contrato">
+                                         <div class="row">
+                                            <!-- COLUNA LABEL -->
+                                            <div class="col-sm-6 col-6 coluna-um">
+                                               Aulas por semana:
+                                            </div>
+                                            <div class="col-sm-6 col-6 coluna-dois">
+                                               04 <a href="javascript:void(0)" title="Editar aulas por semana" onclick="editarAulasPorSemana();"><img src="images/editar-modalidade.png" alt="Editar modalidade"></a>
+                                            </div>
+                                            <!-- COLUNA LABEL -->
+                                         </div>
+                                      </div>
+                                      <!-- ITEM CONTRATO -->
+
+                                      <!-- ADICIONAR MODALIDADE -->
+                                      <div class="add-mais-modalidades">
+                                          <a href="javascript:void(0)" title="Adicionar Modalidade" onclick="adicionarNovaModalidade();">
+                                             <img src="images/adicionar-modalidade.png" alt="Adicionar modalidade">
+                                          </a>       
+                                      </div>
+                                      <!-- ADICIONAR MODALIDADE -->
+
+
+                                 </div>
+                                 <!-- LINHA CPC --> 
+
+
+
+                                 <!-- LINHA CPC --> 
+                                 <div id="cpc3" class="row caixa-pai-contrato">
+                                      <!-- PERIODICIDADE -->
+                                      <div class="caixa-contrato">
+                                         <div class="row">
+                                            <!-- COLUNA LABEL -->
+                                            <div class="col-sm-6 col-6 coluna-um">
+                                               Plano:
+                                            </div>
+                                            <div class="col-sm-6 col-6 coluna-dois">
+                                               Anual <a href="javascript:void(0)"><img src="images/editar-modalidade.png" alt="Editar periodicidade do plano"></a>
+                                            </div>
+                                            <!-- COLUNA LABEL -->
+                                         </div>
+                                      </div>
+                                      <!-- PERIODICIDADE -->      
+                                      <!-- VALOR MENSAL -->   
+                                      <div class="caixa-contrato">
+                                         <div class="row">
+                                            <!-- COLUNA LABEL -->
+                                            <div class="col-sm-6 col-6 coluna-um">
+                                               Valor:
+                                            </div>
+                                            <div class="col-sm-6 col-6 coluna-dois positivo">
+                                               250,00 <a href="javascript:void(0)"><img src="images/positivo.png" alt="Valor a ser pago pelo período selecionado"></a>
+                                            </div>
+                                            <!-- COLUNA LABEL -->
+                                         </div>
+                                      </div>
+                                      <!-- VALOR MENSAL -->  
+                                      <!-- DATA VENCIMENTO -->   
+                                      <div class="caixa-contrato">
+                                         <div class="row">
+                                            <!-- COLUNA LABEL -->
+                                            <div class="col-sm-6 col-6 coluna-um">
+                                               Vencimento:
+                                            </div>
+                                            <div class="col-sm-6 col-6 coluna-dois">
+                                               10 <a href="javascript:void(0)"><img src="images/editar-modalidade.png" alt="Editar data de vencimento do plano"></a>
+                                            </div>
+                                            <!-- COLUNA LABEL -->
+                                         </div>
+                                      </div>
+                                      <!-- DATA VENCIMENTO -->                                    
+                                 </div>
+                                 <!-- LINHA CPC -->
+
+                                 
+                                 <h3>Forma de pagamento</h3>   
+
+                                 <!-- FORMAS DE PAGAMENTO -->
+                                 <div class="formas-de-pagamento">
+                                     
+                                     <div class="accordion" id="formasDePagamentoCollapse">
+                                          
+                                          <!-- FORMA DE PAGAMENTO -->
+                                          <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                              <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseCartaoCredito" aria-expanded="true" aria-controls="collapseCartaoCredito">
+                                                  <div class="custom-control custom-switch">
+                                                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked>
+                                                    <label class="custom-control-label" for="customRadio1">Cartão de crédito</label>
+                                                  </div>
+                                                </button>
+                                              </h2>
+                                            </div>
+
+                                            <div id="collapseCartaoCredito" class="collapse" aria-labelledby="headingOne" data-parent="#formasDePagamentoCollapse">
+                                              <div class="card-body formularios-dados-pagamento">
+                                                   
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                           <input type="text" id="pagtoCCNumero" class="form-control" placeholder="Número do cartão">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                           <input type="text" id="pagtoCCNome" class="form-control" placeholder="Nome impresso no cartão">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                           <input type="text" id="pagtoCCValidade" class="form-control" placeholder="DD/AA">
+                                                        </div>
+                                                        <div class="col-4">
+                                                           <input type="text" id="pagtoCCCvv" class="form-control" placeholder="CVV">
+                                                        </div>
+                                                        <div class="col-4">
+                                                           <img src="images/visa.png" alt="Bandeira do cartão" id="bandeiraCartao">
+                                                        </div>
+                                                    </div>
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- FORMA DE PAGAMENTO -->
+
+                                          <!-- FORMA DE PAGAMENTO -->
+                                          <div class="card">
+                                            <div class="card-header" id="headingTwo">
+                                              <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseCartaoDebito" aria-expanded="false" aria-controls="collapseCartaoDebito">
+                                                  <div class="custom-control custom-switch">
+                                                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                                    <label class="custom-control-label" for="customRadio2">Cartão de débito</label>
+                                                  </div>
+                                                </button>
+                                              </h2>
+                                            </div>
+                                            <div id="collapseCartaoDebito" class="collapse" aria-labelledby="headingTwo" data-parent="#formasDePagamentoCollapse">
+                                              <div class="card-body formularios-dados-pagamento">
+                                                   
+
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                           <input type="text" id="pagtoCDNumero" class="form-control" placeholder="Número do cartão">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                           <input type="text" id="pagtoCDNome" class="form-control" placeholder="Nome impresso no cartão">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                           <input type="text" id="pagtoCDValidade" class="form-control" placeholder="DD/AA">
+                                                        </div>
+                                                        <div class="col-4">
+                                                           <input type="text" id="pagtoCDCvv" class="form-control" placeholder="CVV">
+                                                        </div>
+                                                        <div class="col-4">
+                                                           <img src="images/master.png" alt="Bandeira do cartão" id="bandeiraCartao">
+                                                        </div>
+                                                    </div>
+
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- FORMA DE PAGAMENTO -->
+
+                                          <!-- FORMA DE PAGAMENTO -->
+                                          <div class="card">
+                                            <div class="card-header" id="headingThree">
+                                              <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseBoleto" aria-expanded="false" aria-controls="collapseBoleto">
+                                                  <div class="custom-control custom-switch">
+                                                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                                                    <label class="custom-control-label" for="customRadio3">Boleto bancário</label>
+                                                  </div>
+                                                </button>
+                                              </h2>
+                                            </div>
+                                            <div id="collapseBoleto" class="collapse" aria-labelledby="headingThree" data-parent="#formasDePagamentoCollapse">
+                                              <div class="card-body formularios-dados-pagamento">
+                                                
+                                                        <div class="row">
+                                                              <div class="col-12">
+                                                                 <input type="text" id="pagtoBBNumeroCPF" class="form-control" placeholder="CPF do pagador">
+                                                              </div>
+                                                        </div>
+                                                        <div class="row">
+                                                              <div class="col-12">
+                                                                 <input type="text" id="pagtoBBNome" class="form-control" placeholder="Nome completo do pagador">
+                                                              </div>
+                                                        </div>
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <!-- FORMA DE PAGAMENTO -->
+
+
+                                 </div>
+                                 <!-- FORMAS DE PAGAMENTO -->
+
+
+                                 <h3 class="h3-disclamer">Os dados de pagamento não são armazenados e não são utilizados fora de ambiente seguro</h3>   
+                                 
+                                 
+                                 <!-- CONCORDAR COM OS TERMOS -->
+                                 <div class="row">
+                                    <div class="col-12 concordar-com-os-termos">
+                                       
+                                       <div class="form-group">
+                                            <div class="custom-control custom-switch">
+                                               <input type="checkbox" class="custom-control-input" id="termoDeUso">
+                                               <label class="custom-control-label" for="termoDeUso">Li e estou de acordo com os termos do contrato</label>
+                                            </div>
+                                       </div>
+
+                                    </div>
+                                 </div>
+                                 <!-- CONCORDAR COM OS TERMOS -->
+
+
+                                 <div class="row">
+                                    <div class="col-6">
+                                      <a href="javascript:void(0)" title="Gerar PDF" class="btn btn-default">
+                                        Gerar PDF
+                                      </a>
+                                    </div>
+                                    <div class="col-6">
+                                      <a href="javascript:void(0)" title="Salvar" class="btn btn-primary">
+                                        Salvar
+                                      </a>
+                                    </div>
+                                 </div>
+
+                         
+
+                    </div>
+                  </div>
+                  <!-- CONTEÚDO -->
+                  
+
+                  
+              
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+
+              
+               
+            </div>
+            <!-- PAGE CONTENT FIM -->
+    
+</jsv-content>
