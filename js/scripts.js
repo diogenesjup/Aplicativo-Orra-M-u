@@ -1,6 +1,6 @@
-var urlApi = "https://ambienteplataforma.com.br/orrameu/api/";
-var urlCdn = "https://ambienteplataforma.com.br/orrameu/administrativo/arquivos/";
-var urlDom = "https://ambienteplataforma.com.br/orrameu/";
+var urlApi = "https://servidorseguro.cloud/orrameu/api/";
+var urlCdn = "https://servidorseguro.cloud/orrameu/administrativo/arquivos/";
+var urlDom = "https://servidorseguro.cloud/orrameu/";
 
 // TESTAR ATIVIDADE API
 function testeApi(){
@@ -34,10 +34,23 @@ function testeApi(){
 
 function carregarInicio(){
     
-    console.log("INICIANDO FUNÇÕES BÁSICAS DO APP");
+    console.log("INICIANDO FUNÇÃO PARA CARREGAR OS DADOS BÁSICAS DO APP");
     
     $("#nomeUsuario").html(localStorage.getItem("nomeUsuario"));
 
+    var obj = JSON.parse(localStorage.getItem("dadosUsuario"));
+    console.log("DADOS JSON PARSE: ");
+    console.log(obj);
+    
+    // ALTERAR FOTO DE PERFIL
+    if(obj.dados[0].foto_perfil!==null){
+
+    }
+
+
+
+
+              // CARREGANDO PARCEIROS
               // INICIO CHAMADA AJAX
               var request = $.ajax({
 
@@ -104,6 +117,8 @@ function procLogin(){
 
                               localStorage.setItem("logado-orrameu","sim");
                               
+                              localStorage.setItem("dadosUsuario",JSON.stringify(dados));
+
                               location.href="dashboard.html";
                              
 
@@ -222,6 +237,8 @@ function procCadastro(){
                               localStorage.setItem("idUsuario",dados["id"]);
                               localStorage.setItem("status",dados["status"])
                               localStorage.setItem("logado","sim");
+
+                              localStorage.setItem("dadosUsuario",JSON.stringify(dados));
                               
                               location.href="dashboard.html";
 
@@ -278,8 +295,63 @@ function procEditarCadastro(){
       aviso("Oops! Temos um problema.","As senhas informadas precisam ser iguais! Verifique os dados inseridos e tente novamente.");
     }else{
       
+      // RECUPERAR OS DADOS
+
+      var idUsuario = localStorage.getItem("idUsuario");
+
+      var cadastroEditarUsuario = $("#cadastroEditarUsuario").val();
+      var cadastroEditarEmail = $("#cadastroEditarEmail").val();
+      var cadastroEditarNome = $("#cadastroEditarNome").val();
+      var cadastroEditarCelular = $("#cadastroEditarCelular").val();
+      var cadastroEditarInstagram = $("#cadastroEditarInstagram").val();
+      var cadastroEditarSexo = $("#cadastroEditarSexo").val();
+      var cadastroEditarNascimento = $("#cadastroEditarNascimento").val();
+      var cadastroEditarSenha = $("#cadastroEditarSenha").val();
+
+              // INICIO CHAMADA AJAX
+              var request = $.ajax({
+
+                  method: "POST",
+                  url: urlApi+"atualizar-cadastro.php",
+                  data:{idUsuario:idUsuario, 
+                    cadastroEditarUsuario:cadastroEditarUsuario, 
+                    cadastroEditarEmail:cadastroEditarEmail, 
+                    cadastroEditarNome:cadastroEditarNome,
+                    cadastroEditarCelular:cadastroEditarCelular,
+                    cadastroEditarInstagram:cadastroEditarInstagram,
+                    cadastroEditarSexo:cadastroEditarSexo,
+                    cadastroEditarNascimento:cadastroEditarNascimento,
+                    cadastroEditarSenha:cadastroEditarSenha }
+              
+              })
+              request.done(function (dados) {            
+
+                  console.log("%c RETORNO DOS DADOS DA API","background:#ff0000;color:#fff;");
+                  console.log(dados);
+
+                   // SALVAR DADOS NA SESSÃO
+                   localStorage.setItem("nomeUsuario",dados["nome"]);
+                   localStorage.setItem("emailUsuario",dados["email"]);
+                   localStorage.setItem("idUsuario",dados["id"]);
+                   localStorage.setItem("logado-orrameu","sim");
+                   localStorage.setItem("dadosUsuario",JSON.stringify(dados));
+
+              });
+              request.fail(function (dados) {
+                     
+                   console.log("API NÃO DISPONÍVEL (procEditarCadastro)");
+                   console.log(dados);
+
+                   //salvarLog("API NÃO DISPONÍVEL (testeApi)",dados["sucesso"]);
+                   aviso("Oops! Temos um problema","Não conseguimos comunicação com nossos servidores. Tente novamente depois de alguns minutos");
+
+              });
+              // FINAL CHAMADA AJAX
+
       aviso("Dados salvos com sucesso","As informações informadas foram salvas com sucesso! Obrigado por manter o seu perfil atualizado.");
       voltarAoInicio();
+   
+
     }
 
 }
@@ -640,6 +712,25 @@ function meuCadastro(){
   // DIRECIONAR PARA A VIEW DE EDIÇÃO DE CADASTRO
   $JSView.goToView('viewCadastro');
 
+  var obj = JSON.parse(localStorage.getItem("dadosUsuario"));
+  console.log("DADOS JSON PARSE: ");
+  console.log(obj);
+    
+  // ALTERAR FOTO DE PERFIL
+  if(obj.dados[0].foto_perfil!==null){
+  }
+  
+  // PREENCHER OS CAMPOS DO HTML
+  $("#cadastroEditarUsuario").val(obj.dados[0].nome);
+  $("#cadastroEditarEmail").val(obj.dados[0].email);
+  $("#cadastroEditarNome").val(obj.dados[0].sobrenome);
+  $("#cadastroEditarCelular").val(obj.dados[0].numero_tel);
+  $("#cadastroEditarInstagram").val(obj.dados[0].instagram);
+  $("#cadastroEditarSexo").val(obj.dados[0].sexo);
+  $("#cadastroEditarNascimento").val(obj.dados[0].nascimento);
+  $("#cadastroEditarSenha").val(obj.dados[0].senha);
+  $("#cadastroEditarSenhaConfirmar").val(obj.dados[0].senha);
+
   // CARREGANDO MASCARAS
   carregarMascaras();
   
@@ -780,7 +871,7 @@ function logoff(){
   
     console.log("VAMOS INICIAR O LOGOFF");    
     
-    localStorage.setItem("logado","não");
+    localStorage.setItem("logado-orrameu","não");
 
     localStorage.clear();
     
@@ -798,12 +889,6 @@ function perguntarSair(){
 
 }
 
-// FUNÇÃO PARA SAIR DO APLICATIVO
-function logoff(){
-  
-  location.href="index.html";
-
-}
 
 // CANCELAR O SAIR DO APLICATIVO
 function cancelarSair(){

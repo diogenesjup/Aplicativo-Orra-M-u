@@ -191,12 +191,12 @@ header .coluna-tres{
 header .coluna-tres span{
     position: absolute;
     display: block;
-    right: 0px;
-    top: 5px;
+    right: -12px;
+    top: 12px;
     width: 20px;
     height: 20px;
     border-radius: 100px;
-    background: #FF894D;
+    background: #ba331f;
     color: #fff;
     font-weight: bold;
     padding-top: 1.5px;
@@ -227,22 +227,7 @@ header .row{
   padding-top: 0px;
 }
 
-header .coluna-tres span{
-    position: absolute;
-    display: block;
-    right: 5px;
-    top: 22px;
-    width: 20px;
-    height: 20px;
-    border-radius: 100px;
-    background: #ba331f;
-    color: #fff;
-    font-weight: bold;
-    padding-top: 1.5px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 11px;
-    text-align: center;
-}
+
 
 .btn-primary,
 .btn-primary:hover,
