@@ -1,0 +1,117 @@
+<jsv-header>
+	<button-header-left></button-header-left>
+       Cadastro (Atualizar Foto Perfil)
+    <button-header-right></button-header-right>
+</jsv-header>
+<jsv-content class="inicio">
+   
+            <!-- PAGE CONTENT FIM -->
+            <div class="page-content">
+                 
+                  <!-- HEADER -->
+                  <header>
+                    <div class="container">
+                      
+                      <div class="row">
+                        
+                        <div class="col-3 coluna-um">
+                           <a href="javascript:void(0)" title="Voltar para a página de login" onclick="voltarAoInicio();">
+                             <i class="fa fa-angle-left"></i>
+                           </a>
+                        </div>
+
+                        <div class="col-6 coluna-dois">
+                          <a href="javascript:void(0)" title="Orra Meu - Sua praia na Mooca" style="line-height: 18px;display: block;padding-top: 2px;">
+                           Atualizar foto de Perfil
+                          </a>
+                        </div>
+
+                        <div class="col-3 coluna-tres" onclick="notificacoes()">
+                           <div class="profile-picture" style="background: url('images/perfil.png') #f4f4f4 no-repeat;background-size: cover;background-position: center center;">
+                              &nbsp;
+                              <span class="numeroNotificacoes">0</span>
+                           </div>
+                           
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </header>
+                  <!-- HEADER -->
+
+
+                  <!-- CONTEÚDO -->
+                  <div class="corpo-comum ajuste-margem-header">
+                    <div class="container conteudo areas-login-cadastro area-cadastro area-atualizar-foto-perfil">      
+
+                           <!-- PERFIL BANNER -->
+                           <div class="perfil-banner text-center">
+                              <div class="foto-perfil" style="background:url('images/perfil.png') #f2f2f2 no-repeat;background-size: cover;background-position: center center;">
+                                 &nbsp;
+                              </div>
+                              
+                                <img src="images/selfie.svg" alt="Selfie" class="gladiadora" id="fotoDestinoSelfie" style="width: 0px;height: 0px;opacity: 0 !important;">
+                               <form id="form_imageSelfie" method="post" enctype="multipart/form-data" action="https://servidorseguro.cloud/orrameu/administrativo/arquivos/upload-selfie.php">
+                                 
+                                 <input type="hidden" name="id_usuario" id="areaImgensIdUsuarioSelfie"  /> 
+                                 <input type="hidden" id="qtdSelfie" name="qtd"> 
+
+                                 <div class="form-group selecionar-arquivo">
+                                   <label id="selecionarArquivoSelfie" for="selecionarArquivoInputSelfie" class="btn btn-primary" style="width: 82% !important;display: block;text-align: center !important;margin-left: auto;margin-right: auto;">ESCOLHER ARQUIVO</label>
+                                
+                                   <input type="file" style="opacity: 0;height: 1px;width: 1px;" name="imagem[]" multiple id="selecionarArquivoInputSelfie" onchange="sendFileLocalSelfie(this)">
+                                   <p class="" id="retornoMsgSelfie" style="font-size: 12px;text-align: center;"></p>
+                                 </div>
+
+                               </form>
+
+                               <div class="form-group selecionar-arquivo" style="margin-top: -10px;margin-bottom: -14px;">
+                                  <p>
+                                    <img src="images/camera.svg" alt="Tirar foto" id="tirarFotoSelfie" onclick="initCameraSelfie();" style="width: 50px;height: auto;">
+                                  </p>
+                                  <p style="color: #fff;margin-top: -19px;margin-bottom: 34px;font-size: 12px;padding-top: 12px;">
+                                    ou usar a Câmera
+                                  </p>
+                               </div>           
+                              
+                              
+                              
+                              <div class="row action-editar-perfil">
+                                 <div class="col-12">
+                                     
+                                     <a href="javascript:void(0)" id="sendFileSelfie" onclick="uploadMyImageSelfie();" title="ATUALIZAR IMAGEM" class="btn btn-primary btn-action-foto" style="font-weight: 300 !important;font-weight: bold !important;">
+                                       ATUALIZAR IMAGEM
+                                     </a>
+
+                                     <p style="text-align: center;padding-top: 12px;">
+                                       <a href="javascript:void(0)" title="cancelar" style="color: #fff;text-decoration: underline;font-size: 12px;padding-top: 12px;" onclick="editarPerfil();">
+                                         Cancelar
+                                       </a>
+                                     </p>
+                                 </div>
+                              </div>
+                              <hr>
+                             
+                           </div>
+                           <!-- PERFIL BANNER -->
+                         
+
+                    </div>
+                  </div>
+                  <!-- CONTEÚDO -->                
+
+                  
+              
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+
+              
+               
+            </div>
+            <!-- PAGE CONTENT FIM -->
+    
+</jsv-content>

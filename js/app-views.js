@@ -52,15 +52,13 @@ window.addEventListener('load', function() {
             url: '/viewCarrinho',
             template: 'views/viewCarrinho.html',
             controller: 'viewCarrinho'
+        },
+        viewAtualizarFotoPerfil: {
+            url: '/viewAtualizarFotoPerfil',
+            template: 'views/viewAtualizarFotoPerfil.html',
+            controller: 'viewAtualizarFotoPerfil'
         }    
-                
-
-
-                
-
-
-
-        
+                        
     });
           
     

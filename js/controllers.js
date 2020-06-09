@@ -29,6 +29,9 @@ $JSView.controller = {
 	viewCarrinho: function(e){
 		$JSView.dataView({},e)
 	},
+	viewAtualizarFotoPerfil: function(e){
+		$JSView.dataView({},e)
+	},
 
 
 	

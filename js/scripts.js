@@ -45,10 +45,11 @@ function carregarInicio(){
     // ALTERAR FOTO DE PERFIL
     if(obj.dados[0].foto_perfil!==null){
 
+       $(".profile-picture").css("background","url('"+obj.dados[0].foto_perfil+"') #f2f2f2 no-repeat");
+       $(".profile-picture").css("background-size","cover");
+       $(".profile-picture").css("background-position","center center");
+
     }
-
-
-
 
               // CARREGANDO PARCEIROS
               // INICIO CHAMADA AJAX
@@ -80,6 +81,33 @@ function carregarInicio(){
 
               });
               // FINAL CHAMADA AJAX
+
+}
+
+function manterFotoPerfilAtualizada(){
+   
+   var obj = JSON.parse(localStorage.getItem("dadosUsuario"));
+    console.log("DADOS JSON PARSE: ");
+    console.log(obj);
+    
+    // ALTERAR FOTO DE PERFIL
+    if(obj.dados[0].foto_perfil!==null){
+
+       $(".profile-picture").css("background","url('"+obj.dados[0].foto_perfil+"') #f2f2f2 no-repeat");
+       $(".profile-picture").css("background-size","cover");
+       $(".profile-picture").css("background-position","center center");
+
+
+       $(".foto-perfil-inner-corpo").css("background","url('"+obj.dados[0].foto_perfil+"')");
+       $(".foto-perfil-inner-corpo").css("background-size","cover");
+       $(".foto-perfil-inner-corpo").css("background-position","center center");
+
+
+       $(".perfil-banner .foto-perfil").css("background","url('"+obj.dados[0].foto_perfil+"')");
+       $(".perfil-banner .foto-perfil").css("background-size","cover");
+       $(".perfil-banner .foto-perfil").css("background-position","center center");
+
+    }
 
 }
 
@@ -330,9 +358,9 @@ function procEditarCadastro(){
                   console.log(dados);
 
                    // SALVAR DADOS NA SESSÃO
-                   localStorage.setItem("nomeUsuario",dados["nome"]);
-                   localStorage.setItem("emailUsuario",dados["email"]);
-                   localStorage.setItem("idUsuario",dados["id"]);
+                   localStorage.setItem("nomeUsuario",dados.dados[0].nome);
+                   localStorage.setItem("emailUsuario",dados.dados[0].email);
+                   localStorage.setItem("idUsuario",dados.dados[0].id);
                    localStorage.setItem("logado-orrameu","sim");
                    localStorage.setItem("dadosUsuario",JSON.stringify(dados));
 
@@ -718,6 +746,9 @@ function meuCadastro(){
     
   // ALTERAR FOTO DE PERFIL
   if(obj.dados[0].foto_perfil!==null){
+
+     manterFotoPerfilAtualizada();
+
   }
   
   // PREENCHER OS CAMPOS DO HTML
@@ -909,3 +940,190 @@ function addCarrinho(idCarrinho){
    $JSView.goToView('viewCarrinho');
 
 }
+
+
+// DIRECIONAR O USUÁRIO PARA OS MEIOS DE ATUALIZAÇÃO DA FOTO DE PERFIL
+function atualizarFotoPerfil(){
+    
+   console.log("USUÁRIO QUER ATUALIZAR A FOTO PERFIL");
+
+   // DIRECIONAR PARA A VIEW DO CARRINHO
+   $JSView.goToView('viewAtualizarFotoPerfil');
+   
+   manterFotoPerfilAtualizada();
+
+}
+
+
+
+/* ######### FUNÇÕES USO DE CAMERA SELFIE #########  */
+var minhaImagem;
+var controleFotoEnviada = 1;
+var tipoArquivo = "nenhum";
+function initCameraSelfie(){
+
+         minhaImagem;
+         controleFotoEnviada = 1;
+         
+         tipoArquivo = "camera";
+
+         console.log("INICIANDO FUNÇÃO PARA INICIALIZAR A CAMERA SELFE");
+
+        // SCRIPTS DA CAMERA                                 
+
+                        controleFotoEnviada = 2;
+                        console.log("CONTROLE FOTO ENVIADA ATUALIZADA");
+                        
+                        console.log("INICIALIZANDO A CAMERA");
+                        $("#retornoMsgSelfie").html("inicializando a câmera para a selfie");
+                        navigator.camera.getPicture(onSuccess2, onFail2, {
+                            quality: 50,
+                            destinationType: Camera.DestinationType.DATA_URL
+                        });
+
+                        function onSuccess2(imageData) {
+                            console.log("CAMERA INICIALIZADA COM SUCESSO");
+                            $("#retornoMsgSelfie").html("Imagem capturada com sucesso!");
+                            var image = document.getElementById('fotoDestinoSelfie');
+                            image.style.display = 'block';
+                            image.src = "data:image/jpeg;base64," + imageData;
+
+                            minhaImagem = imageData;
+
+                            $(".perfil-banner .foto-perfil").css("background","url('data:image/jpeg;base64,"+imageData+"')");
+                            $(".perfil-banner .foto-perfil").css("background-size","cover");
+                            $(".perfil-banner .foto-perfil").css("background-position","center center");
+                            localStorage.setItem("parametroFoto",1);
+
+                            var obj = JSON.parse(localStorage.getItem("dadosUsuario"));
+                            obj.dados[0].foto_perfil = 'data:image/jpeg;base64,'+imageData;
+
+                            localStorage.setItem("dadosUsuario",JSON.stringify(obj));
+                            
+                            $('.btn-action-foto').attr('onclick',"uploadMyImageSelfie()");
+
+                        }
+
+                        function onFail2(message) {
+                            console.log("CAMERA NÃO FUNCIONOU");
+                            $("#retornoMsgSelfie").html("Não possível obter a imagem da sua câmera, tente novamente. "+message);
+                            console.log('### MOTIVO FALHA DE ACESSO A CÂMERA: ' + message);
+                        }                           
+
+        document.addEventListener("deviceready", function () {  
+        //alert("Phonegap");                                                                                        
+        }, false); 
+
+}
+
+function uploadMyImageSelfie(){
+
+              console.log("INICIANDO FUNÇÃO PARA FAZER UPLOAD DA IMAGEM");
+   
+                                    if(controleFotoEnviada == 2){
+
+                                            $('.btn-action-foto').html("processando...");
+
+                                            var cadastroEmail = localStorage.getItem("idUsuario");
+                                            
+                                            $.ajax({
+                                              type: "POST",
+                                              url: urlCdn+'upload-selfie-camera.php?cadastroEmail='+cadastroEmail,
+                                              data: { img_data:minhaImagem},
+                                              cache: false,
+                                              contentType: "application/x-www-form-urlencoded",
+                                              success: function (result) {
+                                                
+                                                $('#sendFileSelfie').html("ATUALIZAR IMAGEM");      
+                                                aviso("Foto de perfil atualizada com sucesso","Obrigado por manter o seu perfil atualizado!");
+                                                meuCadastro(); 
+
+                                                minhaImagem = "";
+                                                controleFotoEnviada = 1;
+                                                tipoArquivo = "nenhum";                                        
+
+                                              },
+                                              fail: function(result){
+                                                aviso("Oops! Algo deu errado, tente novamente",result);
+                                              }
+                                            });   
+
+                                        }else{
+
+                                            aviso('Oops! Você não selecionou nenhuma imagem','Você não selecionou ou tirou nenhuma foto.');
+                                            $('.btn-action-foto').html("ATUALIZAR IMAGEM");
+
+                                        }
+
+}
+
+// SE O USUÁRIO QUISER UM ARQUIVO LOCAL
+function sendFileLocalSelfie(seletor){
+
+         minhaImagem;
+         controleFotoEnviada = 1;
+
+         console.log("FUNÇÃO PARA ENVIAR ARQUIVOS LOCAIS");
+
+         var files = $(seletor)[0].files;
+         $("#qtdSelfie").val(files.length);
+         $("#areaImgensIdUsuarioSelfie").val(localStorage.getItem("idUsuario"));
+         console.log("QTD IMAGENS SELECIONADAS: "+files.length);
+         //$('#visualizar').html('Enviando... pode levar alguns minutos');
+
+         $("#retornoMsgSelfie").html("Carregando o seu arquivo");
+         $('#sendFileSelfie').html("PROCESSANDO..."); 
+         $('#sendFileSelfie').attr("onclick","aviso('Estamos carregando o seu arquivo','Aguarde mais alguns minutos')"); 
+
+         /* Efetua o Upload */
+         $('#form_imageSelfie').ajaxForm({
+          //target:'#visualizar' // o callback será no elemento com o id #visualizar
+          dataType:  'json',
+          success:   processJson 
+         }).submit();
+    
+
+       function processJson(dados) { 
+
+            // 'data' is the json object returned from the server 
+            console.log("%c RETORNO SOBRE O ENVIO DAS IMAGENS (UPLOAD):","background:#ff0000;color:#fff;");
+            console.log(dados);             
+
+            if(dados.dados.length>0){
+            
+              $(".perfil-banner .foto-perfil").css("background","url('"+dados.dados[0].imagem+"')");
+              $(".perfil-banner .foto-perfil").css("background-size","cover");
+              $(".perfil-banner .foto-perfil").css("background-position","center center");
+              localStorage.setItem("parametroFoto",1);
+              var obj = JSON.parse(localStorage.getItem("dadosUsuario"));
+              obj.dados[0].foto_perfil = dados.dados[0].imagem;
+              localStorage.setItem("dadosUsuario",JSON.stringify(obj));
+              //$("#fotoDestinoSelfie").css("width","54%");
+            
+              controleFotoEnviada=2;
+              tipoArquivo = "ARQUIVO LOCAL";
+            
+              $('#sendFileSelfie').html("ATUALIZAR IMAGEM");  
+              $("#retornoMsgSelfie").html("Arquivo carregado! Clique em <b>ATUALIZAR IMAGEM</b> para salvar as modificações");
+              $('#sendFileSelfie').attr("onclick","meuCadastro();aviso('Foto de perfil atualizada com sucesso','Obrigado por manter o seu perfil atualizado!');");
+
+              minhaImagem = "";
+              controleFotoEnviada = 1;
+              tipoArquivo = "nenhum"; 
+            
+            }else{
+
+              minhaImagem = "";
+              controleFotoEnviada = 1;
+              tipoArquivo = "nenhum"; 
+              $("#retornoMsgSelfie").html("Erro ao processar imagem, tente novamente.");
+              aviso("Oops! Algo deu errado, com sua imagem. Essa é a mensagem de erro:"+dados.erros);
+
+            }
+
+            $('#selecionarArquivoInputSelfie').resetForm();
+
+        }
+
+    } 
+/* #########  FIM DA FUNÇÃO SOBRE CAMÊRA SELFIE #########  */

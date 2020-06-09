@@ -1551,3 +1551,32 @@ h3#totalFinalCarrinho span{
     opacity: 0.75;
     cursor: pointer;
 }
+
+
+.foto-perfil-inner-corpo,
+.foto-perfil{
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 72px;
+    height: 72px;
+    border-radius: 100%;
+    margin-bottom: 22px;
+    margin-top: -27px;
+    border: 2px solid #000;
+}
+
+.foto-perfil-inner-corpo a{
+      position: absolute;
+      display: block;
+      right: -5px;
+      bottom: 0px;
+      background: #5C6BC0;
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 100%; 
+}
