@@ -229,7 +229,7 @@ ysyss
             </div>
 
             <div class="col-6">
-               <a href="javascript:void(0)" title="Sair" onclick="salvarActionCombo('nenhum','#removerModalidadeConfirmar')" class="btn btn-default">
+               <a href="javascript:void(0)" title="Sair" onclick="efetivarRemoverModalidade()" class="btn btn-default">
                   Ok, remover
                </a>
             </div>
@@ -246,25 +246,24 @@ ysyss
           </p>
 
           <div class="form-group">
-            <select class="form-control" id="inputAddModalidade">
-              <option value="Selecione uma opção">Modalidade</option>
-              <option value="Futebol">Futebol</option>
-              <option value="Volei">Volei</option>
-              <option value="Funcional">Funcional</option>
-              <option value="Futvolei">Futvolei</option>
+            <select class="form-control" id="inputAddListaModalidade">
+              <option value="">Modalidade</option>
             </select>
           </div>
 
           <div class="form-group">
             <select class="form-control" id="inputAddAulasSemana">
-              <option value="Selecione uma opção">Número de aulas</option>
-              <option value="01">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>
-              <option value="06">06</option>
-              <option value="07">07</option>
+              <option value="Selecione uma opção">Número de aulas por semana</option>
+              <option value="1">01</option>
+              <option value="2">02</option>
+              <option value="3">03</option>
+              <option value="4">04</option>
+              <option value="5">05</option>
+              <option value="6">06</option>
+              <option value="7">07</option>
+              <option value="8">08</option>
+              <option value="9">09</option>
+              <option value="10">10</option>
             </select>
           </div>          
 
@@ -276,7 +275,7 @@ ysyss
                </a>
             </div>
             <div class="col-6">
-               <a href="javascript:void(0)" title="Sair" onclick="salvarActionCombo('nenhum','#addModalidade')" class="btn btn-default">
+               <a href="javascript:void(0)" title="Salvar" onclick="addModalidadeContratoAluno()" class="btn btn-default">
                   Salvar
                </a>
             </div>
@@ -353,19 +352,13 @@ ysyss
           // FECHAR OS ACTIONS COMBOS USANDO O SWIPE
           $(".actions-combos").swipe({
             swipe:function(event, direction, distance, duration, fingerCount) {
-              
-              if(direction=="down"){ 
-                
-                cancelarActionCombo();               
-
-              }          
-
-            }
+                if(direction=="down"){ 
+                   cancelarActionCombo();               
+                }          
+            },
+            excludedElements: "label, button, input, select, textarea"
           });
   
-         
-
-
     </script>
    
 
@@ -390,6 +383,8 @@ ysyss
     <script type="text/javascript" src="js/app-views.js?v=5"></script>
 
     <script src="js/owl.carousel.js"></script>
+
+    <script type="text/javascript" src="phonegap.js"></script>
 
 </body>
 </html>

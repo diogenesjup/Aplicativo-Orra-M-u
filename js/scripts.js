@@ -44,10 +44,14 @@ function carregarInicio(){
     
     // ALTERAR FOTO DE PERFIL
     if(obj.dados[0].foto_perfil!==null){
-
+       
+       /*
        $(".profile-picture").css("background","url('"+obj.dados[0].foto_perfil+"') #f2f2f2 no-repeat");
        $(".profile-picture").css("background-size","cover");
        $(".profile-picture").css("background-position","center center");
+       */
+       
+       manterFotoPerfilAtualizada();
 
     }
 
@@ -73,7 +77,38 @@ function carregarInicio(){
               });
               request.fail(function (dados) {
                      
-                   console.log("API NÃO DISPONÍVEL (carregarInicio)");
+                   console.log("API NÃO DISPONÍVEL (carregarInicio) - LISTA DE PARCEIROS");
+                   console.log(dados);
+
+                   //salvarLog("API NÃO DISPONÍVEL (testeApi)",dados["sucesso"]);
+                   //aviso("Oops! Temos um problema","Não conseguimos comunicação com nossos servidores. Tente novamente depois de alguns minutos");
+
+              });
+              // FINAL CHAMADA AJAX
+
+              // CARREGANDO MODALIDADES
+              // INICIO CHAMADA AJAX
+              var request = $.ajax({
+
+                  method: "POST",
+                  url: urlApi+"init-modalidades.php",
+                  //data:{tokenConvenia:tokenConvenia}
+              
+              })
+              request.done(function (dados) {            
+
+                  console.log("%c MODALIDADES","background:#ff0000;color:#fff;");
+                  console.log(dados);
+                  
+                  for(var i = 0;i<dados.dados.length;i++){
+
+                     $("#inputAddListaModalidade").append('<option value="'+dados.dados[i].id+'">'+dados.dados[i].nome_modalidade+' (valor aula: R$ '+dados.dados[i].valor_modalidade+')</option>');
+                  }                  
+
+              });
+              request.fail(function (dados) {
+                     
+                   console.log("API NÃO DISPONÍVEL (carregarInicio) - LISTA DE MODALIDADE");
                    console.log(dados);
 
                    //salvarLog("API NÃO DISPONÍVEL (testeApi)",dados["sucesso"]);
@@ -84,7 +119,74 @@ function carregarInicio(){
 
 }
 
+// INICIANDO FUNÇAO PARA SALVAR A NOVA MODALIDADE
+function addModalidadeContratoAluno(){
+    
+    console.log("INICIANDO FUNÇÃO PARA ADICIONAR NOVA MODALIDADE NO CONTRATO DO ALUNO");
+
+    var idUsuario = localStorage.getItem("idUsuario");
+
+    var inputAddListaModalidade = $("#inputAddListaModalidade").val();
+    var inputAddAulasSemana     = $("#inputAddAulasSemana").val();
+
+    // ENVIAR DADOS PARA O SERVIDOR
+    // INICIO CHAMADA AJAX
+              var request = $.ajax({
+
+                  method: "POST",
+                  url: urlApi+"add-modalidade-contrato.php",
+                  data:{idUsuario:idUsuario,inputAddListaModalidade:inputAddListaModalidade,inputAddAulasSemana:inputAddAulasSemana}
+              
+              })
+              request.done(function (dados) {            
+
+                  console.log("%c RETORNO ADD MODALIDADE","background:#ff0000;color:#fff;");
+                  console.log(dados);
+
+                  if(dados.sucesso==200){
+                  
+                      // APAGAR DADOS QUE ESTEJAM NA DIV DE APPEND
+                      $("#appendItensContrato").html("");
+                      // ALIMENTAR O HTML
+                      for(var i = 0;i<dados.dados.length;i++){
+                          if(i==dados.dados.length-1){
+                             $("#appendItensContrato").append('<div id="cpc'+dados.dados[i].id+'" class="row caixa-pai-contrato contadores-de-caixa ultima-caixa"> <div class="caixa-contrato"> <div class="row"> <div class="col-sm-7 col-7 coluna-um"> Modalidade: </div><div class="col-sm-5 col-5 coluna-dois"> '+dados.dados[i].nome_modalidade+' <a href="javascript:void(0)" onclick="confirmarRemoverModalidade('+dados.dados[i].id+');"><img src="images/fechar-modalidade.png" alt="Remover modalidade"></a> </div></div></div><div class="add-mais-modalidades"> <a href="javascript:void(0)" title="Adicionar Modalidade" onclick="adicionarNovaModalidade();"> <img src="images/adicionar-modalidade.png" alt="Adicionar modalidade"> </a> </div></div>');
+                          }else{
+                            $("#appendItensContrato").append('<div id="cpc'+dados.dados[i].id+'" class="row caixa-pai-contrato contadores-de-caixa"> <div class="caixa-contrato"> <div class="row"> <div class="col-sm-7 col-7 coluna-um"> Modalidade: </div><div class="col-sm-5 col-5 coluna-dois"> '+dados.dados[i].nome_modalidade+' <a href="javascript:void(0)" onclick="confirmarRemoverModalidade('+dados.dados[i].id+');"><img src="images/fechar-modalidade.png" alt="Remover modalidade"></a> </div></div></div><div class="add-mais-modalidades"> <a href="javascript:void(0)" title="Adicionar Modalidade" onclick="adicionarNovaModalidade();"> <img src="images/adicionar-modalidade.png" alt="Adicionar modalidade"> </a> </div></div>');
+                          }
+                      }
+
+                      cancelarActionCombo();
+                      aviso("Deu certo!","Modalidade adicionada ao seu contrato com sucesso!");
+
+                  }else{
+                      
+                      
+                      cancelarActionCombo();
+                      aviso("Oops!","Você já possuí essa modalidade no seu contrato!");
+
+                  }
+
+                  
+
+              });
+              request.fail(function (dados) {
+                     
+                   console.log("API NÃO DISPONÍVEL (addModalidadeContratoAluno)");
+                   console.log(dados);
+
+                   //salvarLog("API NÃO DISPONÍVEL (testeApi)",dados["sucesso"]);
+                   //aviso("Oops! Temos um problema","Não conseguimos comunicação com nossos servidores. Tente novamente depois de alguns minutos");
+
+              });
+              // FINAL CHAMADA AJAX
+
+
+}
+
 function manterFotoPerfilAtualizada(){
+
+   console.log("INICIANDO FUNÇÃO PARA MANTER A FOTO DE PERFIL DO USUÁRIO ATUALIZADA");
    
    var obj = JSON.parse(localStorage.getItem("dadosUsuario"));
     console.log("DADOS JSON PARSE: ");
@@ -92,20 +194,39 @@ function manterFotoPerfilAtualizada(){
     
     // ALTERAR FOTO DE PERFIL
     if(obj.dados[0].foto_perfil!==null){
-
-       $(".profile-picture").css("background","url('"+obj.dados[0].foto_perfil+"') #f2f2f2 no-repeat");
-       $(".profile-picture").css("background-size","cover");
-       $(".profile-picture").css("background-position","center center");
-
-
-       $(".foto-perfil-inner-corpo").css("background","url('"+obj.dados[0].foto_perfil+"')");
-       $(".foto-perfil-inner-corpo").css("background-size","cover");
-       $(".foto-perfil-inner-corpo").css("background-position","center center");
-
-
-       $(".perfil-banner .foto-perfil").css("background","url('"+obj.dados[0].foto_perfil+"')");
-       $(".perfil-banner .foto-perfil").css("background-size","cover");
-       $(".perfil-banner .foto-perfil").css("background-position","center center");
+        
+            // VERIFICAR SE A IMAGEM EXISTE NA MEMÓRIA LOCAL, OU SE TEREMOS QUE BUSCAR NO SERVIDOR CDN
+            var image = new Image();
+            var url_image = obj.dados[0].foto_perfil;
+            image.src = url_image;
+            if (image.width == 0) {
+               console.log("BUSCANDO IMAGEM DE PERFIL DO CDN");
+               $(".profile-picture").css("background","url('"+urlCdn+obj.dados[0].foto_perfil+"') #f2f2f2 no-repeat");
+               $(".profile-picture").css("background-size","cover");
+               $(".profile-picture").css("background-position","center center");
+               
+               $(".foto-perfil-inner-corpo").css("background","url('"+urlCdn+obj.dados[0].foto_perfil+"')");
+               $(".foto-perfil-inner-corpo").css("background-size","cover");
+               $(".foto-perfil-inner-corpo").css("background-position","center center");
+               
+               $(".perfil-banner .foto-perfil").css("background","url('"+urlCdn+obj.dados[0].foto_perfil+"')");
+               $(".perfil-banner .foto-perfil").css("background-size","cover");
+               $(".perfil-banner .foto-perfil").css("background-position","center center");
+            } else {
+               console.log("BUSCANDO IMAGEM DE PERFIL DA MEMÓRIA LOCAL");
+               $(".profile-picture").css("background","url('"+obj.dados[0].foto_perfil+"') #f2f2f2 no-repeat");
+               $(".profile-picture").css("background-size","cover");
+               $(".profile-picture").css("background-position","center center");
+               
+               $(".foto-perfil-inner-corpo").css("background","url('"+obj.dados[0].foto_perfil+"')");
+               $(".foto-perfil-inner-corpo").css("background-size","cover");
+               $(".foto-perfil-inner-corpo").css("background-position","center center");
+               
+               $(".perfil-banner .foto-perfil").css("background","url('"+obj.dados[0].foto_perfil+"')");
+               $(".perfil-banner .foto-perfil").css("background-size","cover");
+               $(".perfil-banner .foto-perfil").css("background-position","center center");
+            }
+          
 
     }
 
@@ -770,12 +891,74 @@ function meuCadastro(){
 
 // FUNÇÃO PARA DIRECIONAR PARA A PÁGINA DO CONTRATO
 function meuContrato(){
+
+  var idUsuario = localStorage.getItem("idUsuario");   
   
    // FECHAR O MENU MOBILE
    fecharMenuMobile();
   
    // DIRECIONAR PARA A VIEW DE EDIÇÃO DE CADASTRO
    $JSView.goToView('viewContrato');
+
+   manterFotoPerfilAtualizada();
+
+   // RECUPERAR DADOS DO CONTRATO DO USUÁRIO
+   // INICIO CHAMADA AJAX
+              var request = $.ajax({
+
+                  method: "POST",
+                  url: urlApi+"contratoUsuario.php",
+                  data:{idUsuario:idUsuario}
+              
+              })
+              request.done(function (dados) {            
+
+                  console.log("%c RETORNO DOS DADOS CONTRATO DO USUÁRIO","background:#ff0000;color:#fff;");
+                  console.log(dados);
+
+                  if(dados.contrato.length==0){
+                     $("#appendItensContrato").html('<p style="font-size: 15px;text-align: center;">Nenhuma modalidade ainda</p><p style="font-size: 16px;text-align: center;"><a href="javascript:void(0)" title="Adicionar modalidade" onclick="adicionarNovaModalidade();" class="btn btn-primary" style="width:300px;">Adicionar modalidade</a></p>');
+                  }else{
+
+                    // LIMPAR O HTML
+                    $("#appendItensContrato").html("");
+                    console.log("TESTE TAMANHO: "+dados.contrato.length);
+
+                    // ALIMENTAR O HTML
+                    for(var i = 0;i<dados.contrato.length;i++){
+
+                        if(i==dados.contrato.length-1){
+                           $("#appendItensContrato").append('<div id="cpc'+dados.contrato[i].id+'" class="row caixa-pai-contrato contadores-de-caixa ultima-caixa"> <div class="caixa-contrato"> <div class="row"> <div class="col-sm-7 col-7 coluna-um"> Modalidade: </div><div class="col-sm-5 col-5 coluna-dois"> '+dados.contrato[i].nome_modalidade+' <a href="javascript:void(0)" onclick="confirmarRemoverModalidade('+dados.contrato[i].id+');"><img src="images/fechar-modalidade.png" alt="Remover modalidade"></a> </div></div></div><div class="add-mais-modalidades"> <a href="javascript:void(0)" title="Adicionar Modalidade" onclick="adicionarNovaModalidade();"> <img src="images/adicionar-modalidade.png" alt="Adicionar modalidade"> </a> </div></div>');
+                        }else{
+                           $("#appendItensContrato").append('<div id="cpc'+dados.contrato[i].id+'" class="row caixa-pai-contrato contadores-de-caixa"> <div class="caixa-contrato"> <div class="row"> <div class="col-sm-7 col-7 coluna-um"> Modalidade: </div><div class="col-sm-5 col-5 coluna-dois"> '+dados.contrato[i].nome_modalidade+' <a href="javascript:void(0)" onclick="confirmarRemoverModalidade('+dados.contrato[i].id+');"><img src="images/fechar-modalidade.png" alt="Remover modalidade"></a> </div></div></div><div class="add-mais-modalidades"> <a href="javascript:void(0)" title="Adicionar Modalidade" onclick="adicionarNovaModalidade();"> <img src="images/adicionar-modalidade.png" alt="Adicionar modalidade"> </a> </div></div>');
+                        }                        
+                        
+                    }
+                                       
+                  }
+
+                  // CARREGANDO DADOS DO USUÁRIO
+                  var obj = JSON.parse(localStorage.getItem("dadosUsuario"));
+                  //obj.dados[0].foto_perfil = 'data:image/jpeg;base64,'+imageData;
+                     
+                  // ATUALIZAR O HTML DOS PLANOS
+                  $(".linha-cpc-planos span").html(obj.dados[0].periodicidade_plano);
+                  $(".linha-cpc-valor span").html("R$ "+obj.dados[0].valor_mensalidade);
+                  $(".linha-cpc-vencimento span").html("todo dia "+obj.dados[0].data_vencimento);
+
+              });
+              request.fail(function (dados) {
+                     
+                   console.log("API NÃO DISPONÍVEL (meuContrato)");
+                   console.log(dados);
+
+                   //salvarLog("API NÃO DISPONÍVEL (testeApi)",dados["sucesso"]);
+                   aviso("Oops! Temos um problema","Não conseguimos comunicação com nossos servidores. Tente novamente depois de alguns minutos");
+
+              });
+              // FINAL CHAMADA AJAX
+
+   
 
    // CARREGAR MASCARAS DOS CAMPOS
    carregarMascaras();
@@ -816,12 +999,60 @@ function salvarActionCombo(inputSeletor,inputCaixaSeletor){
 
 
 // CONFIRMAR SE O USUÁRIO QUER MESMO REMOVER A MODALIDADE
-function confirmarRemoverModalidade(){
+function confirmarRemoverModalidade(idItem){
   
    $("#removerModalidadeConfirmar").css("bottom","0px");
    $(".mascara-menu").fadeIn(500);
 
+   console.log("VAMOS CONFIRMAR SE O USUÁRIO QUER REMOVER A MODALIDADE: "+idItem);
+
+   localStorage.setItem("idRemocaoModalidade",idItem);
+
 }
+
+function efetivarRemoverModalidade(){
+   
+   console.log("VAMOS COMEÇAR A FUNÇÃO PARA REMOVER A MODALIDADE DO CONTRATO");
+   var idModalidade = localStorage.getItem("idRemocaoModalidade");
+
+   console.log("ID DA MODALIDADE A SER REMOVIDA: "+idModalidade);
+
+              // INICIO CHAMADA AJAX
+              var request = $.ajax({
+
+                  method: "POST",
+                  url: urlApi+"remover-modalidade.php",
+                  data:{idModalidade:idModalidade}
+              
+              })
+              request.done(function (dados) {            
+
+                  console.log("%c RETORNO DA API SOBRE A REMOÇÃO","background:#ff0000;color:#fff;");
+                  console.log(dados);
+
+                  $("#cpc"+idModalidade).fadeOut();
+                  cancelarActionCombo();
+                  voltarAoInicio();
+                  aviso("Deu certo!","Modalidade foi removida do seu contrato com sucesso");
+
+              });
+              request.fail(function (dados) {
+                     
+                   console.log("API NÃO DISPONÍVEL (efetivarRemoverModalidade)");
+                   console.log(dados);
+
+                   //salvarLog("API NÃO DISPONÍVEL (testeApi)",dados["sucesso"]);
+                   aviso("Oops! Temos um problema","Não conseguimos comunicação com nossos servidores. Tente novamente depois de alguns minutos");
+
+              });
+              // FINAL CHAMADA AJAX
+
+      console.log("FUNÇÃO ENCERRADA");   
+
+}
+
+
+
 
 // ADICIONAR MODALIDADE
 function adicionarNovaModalidade(){

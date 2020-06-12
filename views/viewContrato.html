@@ -1,6 +1,6 @@
 <jsv-header>
 	<button-header-left></button-header-left>
-       Cadastro (Edição)
+       Seu contrato
     <button-header-right></button-header-right>
 </jsv-header>
 <jsv-content class="inicio">
@@ -8,7 +8,7 @@
             <!-- PAGE CONTENT FIM -->
             <div class="page-content">
                  
-                  <!-- HEADER -->
+                   <!-- HEADER -->
                   <header>
                     <div class="container">
                       
@@ -27,10 +27,11 @@
                         </div>
 
                         <div class="col-3 coluna-tres" onclick="notificacoes()">
-                           <div class="profile-picture" style="background: url('images/profile-picture.png') #f4f4f4 no-repeat;background-size: cover;background-position: center center;">
+                           <div class="profile-picture" style="background: url('images/perfil.png') #f4f4f4 no-repeat;background-size: cover;background-position: center center;">
                               &nbsp;
+                              <span class="numeroNotificacoes">0</span>
                            </div>
-                           <span class="numeroNotificacoes">2</span>
+                           
                         </div>
 
                       </div>
@@ -43,102 +44,22 @@
                   <!-- CONTEÚDO -->
                   <div class="corpo-comum">
                     <div class="container conteudo areas-login-cadastro area-contrato">                                               
-
+                                 
+                                 <!-- AREA APPEND CONTRATOS -->
+                                 <div id="appendItensContrato">
+                                    <p style="font-size: 16px;text-align: center;">Carregando seu contrato</p>
+                                    <p style="text-align: center;">
+                                      <img src="images/unnamed.gif" alt="Carregando seu contrato" style="width: 24px;height: auto;">
+                                    </p>
+                                 </div>
+                                 <!-- AREA APPEND CONTRATOS -->
                         
-                                 <!-- LINHA CPC --> 
-                                 <div id="cpc1" class="row caixa-pai-contrato contadores-de-caixa">
-                                      <!-- ITEM CONTRATO -->
-                                      <div class="caixa-contrato">
-                                         <div class="row">
-                                            <!-- COLUNA LABEL -->
-                                            <div class="col-sm-7 col-7 coluna-um">
-                                               Modalidade:
-                                            </div>
-                                            <div class="col-sm-5 col-5 coluna-dois">
-                                               Futvôlei <a href="javascript:void(0)" onclick="confirmarRemoverModalidade();"><img src="images/fechar-modalidade.png" alt="Remover modalidade"></a>
-                                            </div>
-                                            <!-- COLUNA LABEL -->
-                                         </div>
-                                      </div>
-                                      <!-- ITEM CONTRATO -->
-                                      <!-- ITEM CONTRATO -->
-                                      <div class="caixa-contrato">
-                                         <div class="row">
-                                            <!-- COLUNA LABEL -->
-                                            <div class="col-sm-7 col-7 coluna-um">
-                                               Aulas por semana:
-                                            </div>
-                                            <div class="col-sm-5 col-5 coluna-dois">
-                                               02 <a href="javascript:void(0)" title="Editar aulas por semana" onclick="editarAulasPorSemana();"><img src="images/editar-modalidade.png" alt="Editar modalidade"></a>
-                                            </div>
-                                            <!-- COLUNA LABEL -->
-                                         </div>
-                                      </div>
-                                      <!-- ITEM CONTRATO -->
-                                      
-                                      <!-- ADICIONAR MODALIDADE -->
-                                      <div class="add-mais-modalidades">
-                                          <a href="javascript:void(0)" title="Adicionar Modalidade" onclick="adicionarNovaModalidade();">
-                                             <img src="images/adicionar-modalidade.png" alt="Adicionar modalidade">
-                                          </a>       
-                                      </div>
-                                      <!-- ADICIONAR MODALIDADE -->
                                  
 
-                                 </div>
-                                 <!-- LINHA CPC --> 
-
-
-
 
 
                                  <!-- LINHA CPC --> 
-                                 <div id="cpc2" class="row caixa-pai-contrato contadores-de-caixa ultima-caixa">
-                                      <!-- ITEM CONTRATO -->
-                                      <div class="caixa-contrato">
-                                         <div class="row">
-                                            <!-- COLUNA LABEL -->
-                                            <div class="col-sm-6 col-6 coluna-um">
-                                               Modalidade:
-                                            </div>
-                                            <div class="col-sm-6 col-6 coluna-dois">
-                                               Funcional <a href="javascript:void(0)"><img src="images/fechar-modalidade.png" alt="Remover modalidade"></a>
-                                            </div>
-                                            <!-- COLUNA LABEL -->
-                                         </div>
-                                      </div>
-                                      <!-- ITEM CONTRATO -->
-                                      <!-- ITEM CONTRATO -->
-                                      <div class="caixa-contrato">
-                                         <div class="row">
-                                            <!-- COLUNA LABEL -->
-                                            <div class="col-sm-6 col-6 coluna-um">
-                                               Aulas por semana:
-                                            </div>
-                                            <div class="col-sm-6 col-6 coluna-dois">
-                                               04 <a href="javascript:void(0)" title="Editar aulas por semana" onclick="editarAulasPorSemana();"><img src="images/editar-modalidade.png" alt="Editar modalidade"></a>
-                                            </div>
-                                            <!-- COLUNA LABEL -->
-                                         </div>
-                                      </div>
-                                      <!-- ITEM CONTRATO -->
-
-                                      <!-- ADICIONAR MODALIDADE -->
-                                      <div class="add-mais-modalidades">
-                                          <a href="javascript:void(0)" title="Adicionar Modalidade" onclick="adicionarNovaModalidade();">
-                                             <img src="images/adicionar-modalidade.png" alt="Adicionar modalidade">
-                                          </a>       
-                                      </div>
-                                      <!-- ADICIONAR MODALIDADE -->
-
-
-                                 </div>
-                                 <!-- LINHA CPC --> 
-
-
-
-                                 <!-- LINHA CPC --> 
-                                 <div id="cpc3" class="row caixa-pai-contrato">
+                                 <div id="cpc3" class="row caixa-pai-contrato linha-cpc-planos">
                                       <!-- PERIODICIDADE -->
                                       <div class="caixa-contrato">
                                          <div class="row">
@@ -147,35 +68,40 @@
                                                Plano:
                                             </div>
                                             <div class="col-sm-6 col-6 coluna-dois">
-                                               Anual <a href="javascript:void(0)"><img src="images/editar-modalidade.png" alt="Editar periodicidade do plano"></a>
+                                               <span>carregando</span> <a href="javascript:void(0)"><label style="display: unset;" for="mudarPeriodoPlano">
+                                                <img src="images/editar-modalidade.png" alt="Editar periodicidade do plano"></label></a>
+                                               <select id="mudarPeriodoPlano" style="display: block;width: 0;height: 0;opacity: 0;">
+                                                  <option value="Mensal">Mensal</option>
+                                                  <option value="Anual">Anual</option>
+                                               </select>
                                             </div>
                                             <!-- COLUNA LABEL -->
                                          </div>
                                       </div>
                                       <!-- PERIODICIDADE -->      
                                       <!-- VALOR MENSAL -->   
-                                      <div class="caixa-contrato">
+                                      <div class="caixa-contrato linha-cpc-valor">
                                          <div class="row">
                                             <!-- COLUNA LABEL -->
                                             <div class="col-sm-6 col-6 coluna-um">
                                                Valor:
                                             </div>
                                             <div class="col-sm-6 col-6 coluna-dois positivo">
-                                               250,00 <a href="javascript:void(0)"><img src="images/positivo.png" alt="Valor a ser pago pelo período selecionado"></a>
+                                               <span>carregando...</span> <a href="javascript:void(0)"><img src="images/positivo.png" alt="Valor a ser pago pelo período selecionado"></a>
                                             </div>
                                             <!-- COLUNA LABEL -->
                                          </div>
                                       </div>
                                       <!-- VALOR MENSAL -->  
                                       <!-- DATA VENCIMENTO -->   
-                                      <div class="caixa-contrato">
+                                      <div class="caixa-contrato linha-cpc-vencimento">
                                          <div class="row">
                                             <!-- COLUNA LABEL -->
                                             <div class="col-sm-6 col-6 coluna-um">
                                                Vencimento:
                                             </div>
                                             <div class="col-sm-6 col-6 coluna-dois">
-                                               10 <a href="javascript:void(0)"><img src="images/editar-modalidade.png" alt="Editar data de vencimento do plano"></a>
+                                               <span>carregando...</span> <a href="javascript:void(0)"><img src="images/editar-modalidade.png" alt="Editar data de vencimento do plano"></a>
                                             </div>
                                             <!-- COLUNA LABEL -->
                                          </div>
