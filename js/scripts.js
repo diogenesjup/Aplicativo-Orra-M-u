@@ -519,6 +519,9 @@ function meusPagamentos(){
 
    // CARREGAR MASCARAS DOS CAMPOS
    carregarMascaras();
+   
+   //  MANTER A FOTO DE PERFIL ATUALIZADA
+   manterFotoPerfilAtualizada();
 
    // MONTAR O OWL CARROUSEL DESSA SESSÃO
 
@@ -560,12 +563,15 @@ function minhasAulas(){
    // CARREGAR MASCARAS DOS CAMPOS
    carregarMascaras();
 
-                                // MONTAR O OWL CARROUSEL DESSA SESSÃO
+   //  MANTER A FOTO DE PERFIL ATUALIZADA
+   manterFotoPerfilAtualizada();
 
+
+                                // MONTAR O OWL CARROUSEL DESSA SESSÃO
                                 var minhasAulasRegulares = $('#minhasAulasRegulares').owlCarousel({
                                         loop:false,
-                                        margin:6,
-                                        items: 1,
+                                        margin:0,
+                                        items: 3,
                                         autoplay: false,
                                         center: false,
                                         //navContainer: '.custom-nav-banner',
