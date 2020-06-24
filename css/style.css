@@ -1385,8 +1385,31 @@ h3.h3-disclamer{
   height: auto;
 }
 
+.lightbox-eventos h2{
+    color: #fff;
+    font-size: 14px;
+}
 
 
+.lightbox-eventos h3 span{
+      color: #fff;
+    text-align: center;
+    display: block;
+}
+
+.lightbox-eventos h3 small{
+    color: #fff;
+    font-size: 13px;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 22px;
+}
+
+.lightbox-eventos #conteudoEvento{
+    color: #f0f0f0;
+    font-size: 13px;
+    text-align: left;
+}
 
 .area-loja{
   

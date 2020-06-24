@@ -1,5 +1,6 @@
 var urlApi = "https://servidorseguro.cloud/orrameu/api/";
 var urlCdn = "https://servidorseguro.cloud/orrameu/administrativo/arquivos/";
+var urlCdn2 = "https://servidorseguro.cloud/orrameu/cdn/";
 var urlDom = "https://servidorseguro.cloud/orrameu/";
 
 // TESTAR ATIVIDADE API
@@ -648,6 +649,8 @@ function verAgenda(){
 
 
 // REDIRECIONAR PARA A TELA DE EVENTOS
+var arrayEventos = [];
+
 function eventos(){
 
        // FECHAR O MENU MOBILE
@@ -655,6 +658,82 @@ function eventos(){
       
        // DIRECIONAR PARA A VIEW DE EDIÇÃO DE CADASTRO
        $JSView.goToView('viewEventos');
+
+       //  MANTER A FOTO DE PERFIL ATUALIZADA
+       manterFotoPerfilAtualizada();
+
+       // RECUPERAR TODOS OS EVENTOS
+       // INICIO CHAMADA AJAX
+              var request = $.ajax({
+
+                  method: "POST",
+                  url: urlApi+"eventos.php",
+                  //data:{tokenConvenia:tokenConvenia}
+              
+              })
+              request.done(function (dados) {            
+
+                  console.log("%c RETORNO DA API SOBRE A LISTA DE EVENTOS","background:#ff0000;color:#fff;");
+                  console.log(dados);
+
+                  $("#carregandoEventos").fadeOut();
+
+                  console.log("QUANTIDADE DE EVENTOS: "+dados.dados.length);
+
+                  // ADICIONAR A LISTA
+                  arrayEventos = new ListaEventos();
+                  arrayEventos.adiciona(dados.dados);
+                  console.log("LISTA DE EVENTOS:");
+                  console.log(arrayEventos.eventos);
+
+                   if(dados.dados.length>0){
+
+                                 var mesAnterior = "x";
+                                 var mesAtual = "y";
+                                 var controle = 0;
+                                 var contadorDePaginas = 0;
+                                
+                                // ALIMENTAR OS MESES
+                                for(let i = 0;i<dados.dados.length;i++){
+                                  console.log("ENTREI NO FOR");
+                                  mesAtual = Cale2000.cale002(dados.dados[i].data_evento);
+                                  if(mesAnterior!=mesAtual){
+                                              $("#eventosGerais").append(`                                                    
+                                                 <!-- COLUNA / MÊS -->
+                                                 <div class="item">
+                                                     <h3>${Cale2000.cale002(dados.dados[i].data_evento)}</h3>
+                                                     <div class="row mes-exibicao-eventos-${dados.dados[i].data_evento}">
+                                                     </div>
+                                                 </div>
+                                                 <!-- COLUNA / MÊS -->
+                                                `);
+                                       contadorDePaginas++;
+                                  }                                  
+                                   mesAnterior = mesAtual;
+                                }                  
+
+
+                                // ALIMENTAR OS EVENTOS
+                                for(let i = 0;i<dados.dados.length;i++){
+                                  $(".mes-exibicao-eventos-"+dados.dados[i].data_evento).append(` 
+                                               <!-- COLUNA -->
+                                               <div class="col-4">
+                                                   <div class="coluna">
+                                                       <a href="javascript:void(0)" onclick="detalheEvento(${dados.dados[i].id});" title="Clique para ver o detalhe do evento">
+                                                            <span>${dados.dados[i].nome_evento}</span><br clear="both">${Cale2000.cale003(dados.dados[i].data_evento)}
+                                                       </a>
+                                                    </div>
+                                               </div>
+                                               <!-- COLUNA -->                                              
+                                    `);
+                                }              
+
+
+                                // ALIMENTAR OS DOTS (CADA MÊS, UMA PÁGINA)
+                                for(var j = 0;j<contadorDePaginas;j++){
+                                   console.log("ENTREI NO FOR DOS DOTS");
+                                   $(".owl-dots-eventos").append(`<li class="owl-dot">&nbsp;</li>`);
+                                }
 
 
                                 // MONTAR O OWL CARROUSEL DESSA SESSÃO
@@ -676,16 +755,38 @@ function eventos(){
                                 // AGORA TEMOS ATÉ DOTS!!!
                                 $('#carousel-custom-dots .owl-dot').click(function () {
                                   eventosGerais.trigger('to.owl.carousel', [$(this).index(), 300]);
-                                });
+                                }); 
+
+
+                   }else{
+                      $("#eventosGerais").html(`<p style="text-align:center;>Nenhum evento ainda :(</p>`);
+                   }
+
+              });
+              request.fail(function (dados) {
+                     
+                   console.log("API NÃO DISPONÍVEL (eventos)");
+                   console.log(dados);
+
+                   //salvarLog("API NÃO DISPONÍVEL (testeApi)",dados["sucesso"]);
+                   aviso("Oops! Temos um problema","Não conseguimos comunicação com nossos servidores. Tente novamente depois de alguns minutos");
+
+              });
+              // FINAL CHAMADA AJAX
+
+
+                                
 
 }
 
 // ABRIR LIGHTBOX DETALHE EVENTO
 function detalheEvento(idEvento){
   
-    console.log("ABRINDO DETALHE DO EVENTO");
-
-    $(".lightbox-eventos").show("500"); 
+    console.log("ABRINDO DETALHE DO EVENTO: "+idEvento);
+    
+    // EXIBIR O DETALHE DO EVENTO
+    let detalheEvento  = new ListaEventos(); 
+    detalheEvento.showEvento(idEvento);
 
 }
 
