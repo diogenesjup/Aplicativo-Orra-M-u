@@ -57,7 +57,20 @@ window.addEventListener('load', function() {
             url: '/viewAtualizarFotoPerfil',
             template: 'views/viewAtualizarFotoPerfil.html',
             controller: 'viewAtualizarFotoPerfil'
+        },
+        viewFinalizarReserva: {
+            url: '/viewFinalizarReserva',
+            template: 'views/viewFinalizarReserva.html',
+            controller: 'viewFinalizarReserva'
+        },
+        viewFalaAe: {
+            url: '/viewFalaAe',
+            template: 'views/viewFalaAe.html',
+            controller: 'viewFalaAe'
         }    
+               
+
+
                         
     });
           

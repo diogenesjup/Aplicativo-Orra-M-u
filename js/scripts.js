@@ -39,6 +39,11 @@ function carregarInicio(){
     
     $("#nomeUsuario").html(localStorage.getItem("nomeUsuario"));
 
+    localStorage.setItem("checkout",null);
+    localStorage.setItem("qtdCarrinho",0);
+    localStorage.setItem("valorCarrinho",0);
+    localStorage.setItem("listaProdutosCheckout","[{}]");
+
     var obj = JSON.parse(localStorage.getItem("dadosUsuario"));
     console.log("DADOS JSON PARSE: ");
     console.log(obj);
@@ -802,6 +807,10 @@ function fecharEvento(){
 
 // REDIRECIONAR PARA A LOJA
 function loja(){
+       
+       console.log("INICIANDO FUNÇÃO PARA CARREGAMENTO DA LOJA");
+
+       let loja = new Loja();
   
        // FECHAR O MENU MOBILE
        fecharMenuMobile();
@@ -809,8 +818,79 @@ function loja(){
        // DIRECIONAR PARA A VIEW DE EDIÇÃO DE CADASTRO
        $JSView.goToView('viewLoja');
 
+       //  MANTER A FOTO DE PERFIL ATUALIZADA
+       manterFotoPerfilAtualizada();
+
+       loja.atualizarHtmlCarrinho();
+
        // CARREGAR PRODUTOS
        // carregarProdutos();
+
+              // INICIO CHAMADA AJAX
+              var request = $.ajax({
+
+                  method: "POST",
+                  url: urlApi+"produtos.php",
+                  //data:{tokenConvenia:tokenConvenia}
+              
+              })
+              request.done(function (dados) {            
+
+                  console.log("%c RETORNO DA API SOBRE A LOJA","background:#ff0000;color:#fff;");
+                  console.log(dados);
+
+                  console.log("%c TOTAL DE PRODUTOS: "+dados.produtos.length,"background:#ff0000;color:#fff;");
+
+                  if(dados.produtos.length>0){
+                     $("#carregandoProdutos").remove();
+                  }else{
+                     $("#carregandoProdutos").html("Nenhum produto cadastrado para mostrar.");
+                  }
+                   
+                   // PERCORRER PRODUTOS
+                   for(var i = 0;i<dados.produtos.length;i++){
+                       
+                       $("#listagemDeProdutos").append(`
+                           
+                                 <!-- PRODUTO -->
+                                 <div class="col-6">
+                                    <div class="produto">
+                                       <!-- FOTO PRODUTO -->
+                                       <div class="foto-produto" style="background: url('${urlCdn2+dados.produtos[i].foto}') transparent no-repeat;background-size: auto 80%;background-position: center center; ">
+                                          <a href="javascript:void(0)" onclick="detalheProduto(${dados.produtos[i].id})" title="Clique para ver detalhes sobre o produto">
+                                             &nbsp;
+                                          </a>
+                                       </div>
+                                       <!-- FOTO PRODUTO -->
+                                       <h2>
+                                         ${dados.produtos[i].nome}<br clear="both">
+                                         <b>${dados.produtos[i].preco}</b>
+                                       </h2>
+                                    </div>
+                                 </div>
+                                 <!-- PRODUTO -->
+
+                       `);
+
+                   }
+
+                   // SALVAR NA INSTANCIA DA CLASSE
+                   loja.declararLocalStorage(dados.produtos);
+                   loja.galeria(dados.galeria);
+
+              });
+              request.fail(function (dados) {
+                     
+                   console.log("API NÃO DISPONÍVEL (loja)");
+                   console.log(dados);
+
+                   //salvarLog("API NÃO DISPONÍVEL (testeApi)",dados["sucesso"]);
+                   aviso("Oops! Temos um problema","Não conseguimos comunicação com nossos servidores. Tente novamente depois de alguns minutos");
+
+              });
+              // FINAL CHAMADA AJAX
+
+    console.log("FUNÇÃO PARA CARREGAMENTO DA LOJA FINALIZADA");
 
 }
 
@@ -856,37 +936,202 @@ function filtroProdutos(){
 
 // FUNÇÃO PARA DIRECIONAR PARA A PÁGINA DE DETALHE DO PRODUTO
 function detalheProduto(idProduto){
-  
+     
      $JSView.goToView('viewDetalheProduto');
 
-     // CARREGAR DETALHES DO PRODUTO
-     // carregarDetalhesProduto();
+     manterFotoPerfilAtualizada();
 
-                                // GALERIA DE IMAGENS DO PRODUTO
-                                var galeriaImagensProduto = $('#galeriaImagensProduto').owlCarousel({
-                                        loop:true,
-                                        margin:30,
-                                        items: 1,
-                                        autoplay: false,
-                                        center: false,
-                                        //navContainer: '.custom-nav-banner',
-                                        //autoplay:true,
-                                        //autoplayTimeout:6500,
-                                        dotsContainer: '#carousel-custom-dots',
-                                        //autoplayHoverPause:true,
-                                        //animateIn: 'fadeIn', // add this
-                                        //animateOut: 'fadeOut', // and this
-                                        
-                                });
-                                // AGORA TEMOS ATÉ DOTS!!!
-                                $('#carousel-custom-dots .owl-dot').click(function () {
-                                  galeriaImagensProduto.trigger('to.owl.carousel', [$(this).index(), 300]);
-                                });
-
-
-
+     let produto = new Loja();
      
+     produto.rotinasInterna(idProduto);
 
+     produto.atualizarHtmlCarrinho();
+
+}
+
+// ADICIONAR PRODUTO AO CARRINHO
+function addCarrinho(idCarrinho){
+  
+  console.log("ADICIONAR PRODUTO AO CARRINHO");
+
+  // DIRECIONAR PARA A VIEW DO CARRINHO
+   $JSView.goToView('viewCarrinho');
+
+   manterFotoPerfilAtualizada();
+
+   let carrinho = new Loja();
+
+   carrinho.addToCart();
+
+   carrinho.carrinhoHtml();
+
+}
+
+function carrinho(){
+
+    // DIRECIONAR PARA A VIEW DO CARRINHO
+
+    if(localStorage.getItem("qtdCarrinho")>0){
+
+        $JSView.goToView('viewCarrinho');
+        manterFotoPerfilAtualizada();
+        let carrinho = new Loja();
+
+        carrinho.carrinhoHtml();
+
+    }else{
+
+        aviso("Carrinho está vazio","Você ainda não adicionou produtos ao carrinho");
+
+    }
+
+    
+
+}
+
+
+function mudarQuantidadeProdutoCarrinho(idProduto){
+   
+   console.log("ATUALIZANDO A QUANTIDADE DO MESMO PRODUTO DO CARRINHO");
+
+   let loja = new Loja();
+
+   let produtosCheckout = loja.recuperarLocalStorageCheckout();
+   let valorCarrinho = 0;
+   let novaQtd = $("#variacaoId"+idProduto).val();
+
+   for(var i = 1;i<produtosCheckout.length;i++){
+      
+      if(produtosCheckout[i].id==idProduto){
+
+         produtosCheckout[i].qtd = novaQtd;
+         valorCarrinho = parseFloat(valorCarrinho) + (novaQtd * parseFloat(produtosCheckout[i].preco));
+        
+
+      }else{
+
+        // ATUALIZAR O VALOR TOTAL DO CARRINHO
+        valorCarrinho = parseFloat(valorCarrinho) + (produtosCheckout[i].qtd * parseFloat(produtosCheckout[i].preco));
+
+      }     
+      
+
+   }
+
+   console.log("ATUALIZANDO A LOCAL STORAGE");
+   localStorage.setItem("valorCarrinho",valorCarrinho);
+   localStorage.setItem("listaProdutosCheckout",JSON.stringify(produtosCheckout));
+  
+   loja.carrinhoHtml();
+   
+}
+
+
+function removerProduto(idProduto){
+
+     $("#linhaProduto"+idProduto).fadeOut();
+
+     let loja = new Loja();
+
+     loja.removeFromCart(idProduto);
+
+}
+
+
+
+function finalizarReserva(){  
+   
+
+   let checkout = localStorage.getItem("listaProdutosCheckout");
+   let qtdCarrinho = localStorage.getItem("qtdCarrinho");
+   let valorCarrinho = localStorage.getItem("valorCarrinho");
+   let idUsuario = localStorage.getItem("idUsuario");
+   
+
+              // INICIO CHAMADA AJAX
+              var request = $.ajax({
+
+                  method: "POST",
+                  url: urlApi+"reserva.php",
+                  data:{idUsuario:idUsuario,checkout:checkout,qtdCarrinho:qtdCarrinho,valorCarrinho:valorCarrinho}
+              
+              })
+              request.done(function (dados) {            
+
+                  console.log("%c RETORNO DOS DADOS SOBRE A RESERVA","background:#ff0000;color:#fff;");
+                  console.log(dados);
+                  
+                  $JSView.goToView('viewFinalizarReserva');
+
+                  manterFotoPerfilAtualizada();
+
+                  $(".confirmacao-reserva h1 small").html("NÚMERO PEDIDO: #"+dados.numero_pedido);
+
+              });
+              request.fail(function (dados) {
+                     
+                   console.log("API NÃO DISPONÍVEL (finalizarReserva)");
+                   console.log(dados);
+
+                   //salvarLog("API NÃO DISPONÍVEL (testeApi)",dados["sucesso"]);
+                   aviso("Oops! Temos um problema","Não conseguimos comunicação com nossos servidores. Tente novamente depois de alguns minutos");
+
+              });
+              // FINAL CHAMADA AJAX
+
+}
+
+
+function falaAe(){
+
+  $JSView.goToView('viewFalaAe');
+  fecharMenuMobile();
+  manterFotoPerfilAtualizada();
+
+}
+
+function procFalaAe(){
+   
+   var idUsuario = localStorage.getItem("idUsuario");
+   var msgAssunto = $("#msgAssunto").val();
+   var msgMensagem = $("#msgMensagem").val();
+
+   if(msgAssunto!="" && msgMensagem!=""){
+   
+              // INICIO CHAMADA AJAX
+              var request = $.ajax({
+
+                  method: "POST",
+                  url: urlApi+"falaae.php",
+                  data:{idUsuario:idUsuario,msgAssunto:msgAssunto,msgMensagem:msgMensagem}
+              
+              })
+              request.done(function (dados) {            
+
+                  console.log("%c RETORNO DOS DADOS SOBRE A MENSAGEM","background:#ff0000;color:#fff;");
+                  console.log(dados);
+                  
+                  voltarAoInicio();
+                  aviso("Deu certo!","Mensagem foi enviada com sucesso! Em breve vamos retornar o seu contato");
+
+              });
+              request.fail(function (dados) {
+                     
+                   console.log("API NÃO DISPONÍVEL (procFalaAe)");
+                   console.log(dados);
+
+                   //salvarLog("API NÃO DISPONÍVEL (testeApi)",dados["sucesso"]);
+                   aviso("Oops! Temos um problema","Não conseguimos comunicação com nossos servidores. Tente novamente depois de alguns minutos");
+                   $("#procFalaAe").html("Enviar mensagem");
+
+              });
+              // FINAL CHAMADA AJAX
+
+    }else{
+
+      aviso("Oops! Campos não preenchidos","Todos os campos do formulário são obrigatórios para o envio.");
+    
+    }
 
 }
 
@@ -914,8 +1159,9 @@ function redirecionarCadastro(){
 function redirecionarEsqueciSenha(){
   
     $JSView.goToView('viewEsqueciSenha');
-
-
+    
+    manterFotoPerfilAtualizada();
+   
 }
 
 
@@ -1269,15 +1515,6 @@ function cancelarSair(){
 }
 
 
-// ADICIONAR PRODUTO AO CARRINHO
-function addCarrinho(idCarrinho){
-  
-  console.log("ADICIONAR PRODUTO AO CARRINHO");
-
-  // DIRECIONAR PARA A VIEW DO CARRINHO
-   $JSView.goToView('viewCarrinho');
-
-}
 
 
 // DIRECIONAR O USUÁRIO PARA OS MEIOS DE ATUALIZAÇÃO DA FOTO DE PERFIL

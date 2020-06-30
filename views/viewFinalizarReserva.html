@@ -1,6 +1,6 @@
 <jsv-header>
 	<button-header-left></button-header-left>
-       Loja > Carrinho
+       Loja > Confirmação de reserva
     <button-header-right></button-header-right>
 </jsv-header>
 <jsv-content class="inicio">
@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-6 coluna-dois">
                           <a href="javascript:void(0)" title="Orra Meu - Sua praia na Mooca" style="line-height: 18px;display: block;padding-top: 2px;">
-                           Seu<br>Carrinho
+                           Confirmação<br>de reserva
                           </a>
                         </div>
                         <div class="col-3 coluna-tres" onclick="notificacoes()">
@@ -41,46 +41,21 @@
                           
 
                           <!-- LOJA -->
-                          <div class="loja">
+                          <div class="loja confirmacao-reserva">
                               
-                              <div class="row lista-produtos" id="listagemDeProdutosCarrinho">
-                                
-                                 <!-- PRODUTOS CARRINHO -->
-                                 <div class="col-12 carrinho"></div>
-                                 <!-- PRODUTOS CARRINHO -->
-
-                                 <!-- RESUMO COMPRA -->
-                                 <div class="resumo-compra">
-
-                                   <!-- LINHA 1 -->
-                                   <div class="row linha-1">
-                                     <div class="col-6 coluna-um">
-                                       Subtotal
-                                     </div>
-                                     <div class="col-6 coluna-dois">
-                                       R$ <span id="valorSubtotal"></span>
-                                     </div>
-                                   </div>
-                                   <!-- LINHA 1 -->
-
-                                   <!-- LINHA 2 -->
-                                   <div class="row linha-2">
-                                     <div class="col-12 coluna-um">
-                                       Pagto. e retirada na administraçao Orra Mêu
-                                     </div>
-                                     <!--<div class="col-6 coluna-dois">
-                                       <small>(Grátis)</small>
-                                     </div>-->
-                                   </div>
-                                   <!-- LINHA 2 -->
-
-                                 </div>
-                                 <!-- RESUMO COMPRA -->
-
-                                 <h3 id="totalFinalCarrinho">Total <span>R$ <span id="valorTotal"></span></span></h3>
-
-                                 
-                              </div>
+                               <h1>
+                                 <i class="fa fa-check-circle"></i> <br clear="both">
+                                 Reserva realizada com sucesso!
+                                 <small></small>
+                               </h1>
+                               <p>
+                                 Agora é só comparecer na administração da Orra Mêu, para realizar o pagamento e retirar os seus produtos.
+                               </p>
+                               <p>
+                                 <a href="javascript:void(0)" title="Voltar ao início" class="btn btn-primary" onclick="voltarAoInicio();">
+                                    Voltar ao início
+                                 </a>
+                               </p>
 
                           </div>
                           <!-- LOJA -->
@@ -100,13 +75,7 @@
               <br clear="both">
               <br clear="both">
 
-                  <!-- IR PARA O PAGAMENTO -->
-                  <div class="adicionar-ao-carrinho inner-carrinho">
-                    <a href="javascript:void(0)" title="Confirmar reserva" onclick="finalizarReserva(); $(this).html('processando...')">
-                        Reservar <img src="images/finalizar-compra.png" alt="Finalizar compra">
-                    </a>
-                  </div>
-                  <!-- IR PARA O PAGAMENTO -->
+                
              
                
             </div>

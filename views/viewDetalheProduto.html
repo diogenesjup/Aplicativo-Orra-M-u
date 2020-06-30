@@ -11,30 +11,24 @@
                   <!-- HEADER -->
                   <header>
                     <div class="container">
-                      
                       <div class="row">
-                        
                         <div class="col-3 coluna-um">
                            <a href="javascript:void(0)" title="Voltar para a página de login" onclick="loja();">
                              <i class="fa fa-angle-left"></i>
                            </a>
                         </div>
-
                         <div class="col-6 coluna-dois">
                           <a href="javascript:void(0)" title="Orra Meu - Sua praia na Mooca" style="line-height: 18px;display: block;padding-top: 2px;">
-                            Detalhes do Produto
+                           Loja<br>Orra Mêu
                           </a>
                         </div>
-
                         <div class="col-3 coluna-tres" onclick="notificacoes()">
-                           <div class="profile-picture" style="background: url('images/profile-picture.png') #f4f4f4 no-repeat;background-size: cover;background-position: center center;">
+                           <div class="profile-picture" style="background: url('images/perfil.png') #f4f4f4 no-repeat;background-size: cover;background-position: center center;">
                               &nbsp;
+                              <span class="numeroNotificacoes">0</span>
                            </div>
-                           <span class="numeroNotificacoes">2</span>
                         </div>
-
                       </div>
-
                     </div>
                   </header>
                   <!-- HEADER -->
@@ -42,73 +36,26 @@
 
                   <!-- CONTEÚDO -->
                   <div class="corpo-comum">
-                    <div class="conteudo areas-login-cadastro area-contrato area-loja">                                               
-                                                             
-                          
-
-                          <!-- FILDS LOJA -->
-                          <div class="row fields-loja">
-                             <div class="col-9">
-                                <input type="text" id="buscaProdutos" class="form-control" placeholder="Pesquisar">
-                             </div>
-                             <div class="col-3">
-                                 <a href="javascript:void(0)" id="menuCarrinho" title="Carrinho">
-                                    <img src="images/carrinho.png" alt="Carrinho">
-                                    <span>0</span>
-                                 </a>
-                             </div>
-                          </div>
-                          <!-- FILDS LOJA -->
-
-
+                    <div class="conteudo areas-login-cadastro area-contrato area-loja">
 
                           <!-- LOJA -->
                           <div class="loja">
                               
                                  <!-- OWL GALERIA IMAGENS PRODUTO -->
                                  <div id="galeriaImagensProduto" class="owl-carousel">
-                                    <div class="item">
-                                       <img src="images/produto2.png" alt="Foto do produto">
-                                    </div>
-                                    <div class="item">
-                                       <img src="images/produto2.png" alt="Foto do produto">
-                                    </div>
-                                    <div class="item">
-                                       <img src="images/produto2.png" alt="Foto do produto">
-                                    </div>
                                  </div>
 
                                  <div class="container" style="text-align: right;padding-top: 14px;width: 100%;max-width: 100%;position: relative;z-index: 999;">
-                                       <ul id="carousel-custom-dots" class="owl-dots"> 
-                                          
-                                          <li class="owl-dot">&nbsp;</li>
-                                          <li class="owl-dot">&nbsp;</li>
-                                          <li class="owl-dot">&nbsp;</li>
-                                          
-                                        </ul>                 
+                                       <ul id="carousel-custom-dots" class="dots-galeria-produto owl-dots">
+                                       </ul>                 
                                   </div>
                                  <!-- OWL GALERIA IMAGENS PRODUTO -->
 
                                  <div class="metas-produto">
-                                    
-                                    <div class="row">
-                                       <div class="col-9 titulo-produto">
-                                         Bola de Futvôlei MIKASA
-                                       </div>
-                                       <div class="col-3 preco-produto">
-                                         R$ 120,00
-                                       </div>
-                                    </div>
+                                 </div>
 
+                                 <!--
                                     <div class="row">
-                                      <div class="col-12">
-                                        <p>Desenvolvida para o futvôlei, Mikasa FT5 é homologada pela FIFA, ou seja, passou por todos os testes de qualidade e durabilidade.</p>
-                                      </div>
-                                    </div>
-
-                                    <div class="row">
-
-                                          <!-- VARIAÇÃO -->
                                           <div class="col-12 fields-detalhe-produto">
                                             <div class="form-group">
                                               <label>COR:</label>
@@ -120,9 +67,6 @@
                                               </select>
                                             </div>
                                           </div>
-                                          <!-- VARIAÇÃO -->
-
-                                          <!-- VARIAÇÃO -->
                                           <div class="col-12 fields-detalhe-produto">
                                             <div class="form-group">
                                               <label>TAMANHO:</label>
@@ -135,12 +79,8 @@
                                               </select>
                                             </div>
                                           </div>
-                                          <!-- VARIAÇÃO -->
-
                                     </div>
-
-
-                                 </div>
+                                    -->
 
 
                                  <br clear="both">
@@ -156,12 +96,6 @@
                           <!-- LOJA -->
 
                           
-
-
-                                 
-
-                                 
-
                     </div>
                   </div>
                   <!-- CONTEÚDO -->
@@ -169,7 +103,7 @@
               
               <!-- ADICIONAR AO CARRINHO -->
               <div class="adicionar-ao-carrinho">
-                <a href="javascript:void(0)" onclick="addCarrinho(1);" id="addCarrinhoProduto" data-id="1" title="Adicionar ao carrinho">
+                <a href="javascript:void(0)" onclick="addCarrinho();" id="addCarrinhoProduto" data-id="" title="Adicionar ao carrinho">
                     Adicionar ao Carrinho <img src="images/adiciomar-ao-carrinho.png" alt="Adicionar ao carrinho">
                 </a>
               </div>

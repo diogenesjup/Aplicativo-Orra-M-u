@@ -32,9 +32,12 @@ $JSView.controller = {
 	viewAtualizarFotoPerfil: function(e){
 		$JSView.dataView({},e)
 	},
-
-
-	
+	viewFinalizarReserva: function(e){
+		$JSView.dataView({},e)
+	},
+	viewFalaAe: function(e){
+		$JSView.dataView({},e)
+	},
 
 	
 	modalFavoritos: function(e){

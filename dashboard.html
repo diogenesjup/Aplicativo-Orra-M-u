@@ -68,7 +68,7 @@ ysyss
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
 <!-- ICONES -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
 
 <!-- OWL CAROUSEL -->
 <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -120,7 +120,7 @@ ysyss
           <li><a href="javascript:void(0)" onclick="minhasAulas();" title="Minhas Aulas">Minhas Aulas</a></li>
           <li><a href="javascript:void(0)" onclick="eventos();" title="Eventos">Eventos</a></li>
           <li><a href="javascript:void(0)" onclick="loja();" title="Loja">Loja</a></li>
-          <li><a href="javascript:void(0)" title="Fala Aê">Fala Aê</a></li>
+          <li><a href="javascript:void(0)" onclick="falaAe()" title="Fala Aê">Fala Aê</a></li>
           <li><a href="javascript:void(0)" title="Notificações">Notificações</a></li>
           <li><a href="javascript:void(0)" onclick="perguntarSair();" title="Sair">Sair</a></li>
         </ul>
@@ -367,15 +367,17 @@ ysyss
   
     </script>
    
-
-   <script type="text/javascript" src="js/jquery.form.js"></script>
+    <!-- UPLOADS -->
+    <script type="text/javascript" src="js/jquery.form.js"></script>
 
     <!-- HELPERS -->
     <script type="text/javascript" src="helpers/Cale2000.js"></script>
 
     <!-- MODELS -->
     <script type="text/javascript" src="models/Eventos.js"></script>
-
+    <script type="text/javascript" src="models/Loja.js"></script>
+    
+    <!-- SCRIPTS GERAIS DA LOJA -->
     <script type="text/javascript" src="js/scripts.js"></script>
     <script type="text/javascript" src="js/sweetalert2.min.js"></script>
 
@@ -383,7 +385,6 @@ ysyss
     <script type="text/javascript">
       // PAGINA PRINCIPAL DAS VIEWS
       var paginaSessao = "dashboard.html";
-
 
       setTimeout("carregarInicio();", 1500);
 
@@ -395,7 +396,7 @@ ysyss
 
     <script src="js/owl.carousel.js"></script>
 
-    <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
 
 </body>
 </html>

@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.diogenesjunior.orrameu"
-        version   = "1.5">
+        version   = "1.6">
 
     <name>Orra Mêu</name>
 
@@ -37,26 +37,17 @@
    
     <preference name="disable-cursor"             value="false" />          <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
-    <!-- STATUS BAR TRANSPARENTE -->
-    <preference name="StatusBarBackgroundColor" value="transparent" />
-   
-    <preference name="SplashScreen" value="splash" />  
     
-    <preference name="SplashMaintainAspectRatio" value="true" />
-    
-
     <plugin name="cordova-android-support-gradle-release">
        <variable name="ANDROID_SUPPORT_VERSION" value="15.0.0"/>
     </plugin>
-
-
     
-   <preference name="android-minSdkVersion" value="15" />
-   <preference name="android-targetSdkVersion" value="29" />
-   
-    
+    <preference name="android-minSdkVersion" value="15" />
+    <preference name="android-targetSdkVersion" value="29" />
+       
     <preference name="phonegap-version" value="cli-9.0.0" />
     <preference name='pgb-builder-version' value='1' />
+    <preference name="StatusBarBackgroundColor" value="#ecb238" />
     <!-- Plugins -->
 
     <!-- Core plugins  -->
@@ -68,9 +59,7 @@
     <plugin name="cordova-plugin-android-permissions" />
     <!--<preference name="android-build-tool" value="gradle" />-->
     
-    <plugin name="cordova-plugin-geolocation" />
-    <plugin name="cordova-plugin-gpslocation" />
-    <plugin name="cordova-plugin-advanced-geolocation" source="npm" />
+   
     <plugin name="cordova-plugin-globalization" />
     <plugin name="cordova-plugin-inappbrowser" />
     <plugin name="cordova-plugin-media" />
@@ -114,20 +103,39 @@
     <icon src="images/icones/768.png"  width="768" height="768" />
     <icon src="images/icones/960.png"  width="960" height="960" />
 
-    
-
-
     <icon src="images/icones/1024x1024.png"  width="1024" height="1024" />
 
     <!-- Define app splash screen for each platform. -->
             
     <!-- you can use any density that exists in the Android project -->
-    <splash src="images/splashcreen.png" />
+    
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="5000" />
+    <preference name="FadeSplashScreen" value="false"/>
+    <preference name="ShowSplashScreenSpinner" value="false"/>
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="SplashScreenBackgroundColor" value="#D40F7D" /> 
+    <preference name="ShowSplashScreen" value="true" />
 
-    <splash src="images/splashcreen.png" gap:platform="android" density="hdpi" />
-    <splash src="images/splashcreen.png" gap:platform="android" density="ldpi" />
-    <splash src="images/splashcreen.png" gap:platform="android" density="mdpi" />
-    <splash src="images/splashcreen.png" gap:platform="android" density="xhdpi" />
+    <splash src="images/splashscreen.png" />
+    <splash src="images/splashscreen.png" gap:platform="android" density="hdpi" />
+    <splash src="images/splashscreen.png" gap:platform="android" density="ldpi" />
+    <splash src="images/splashscreen.png" gap:platform="android" density="mdpi" />
+    <splash src="images/splashscreen.png" gap:platform="android" density="xhdpi" />
+        
+
+        
+        <splash src="images/splashscreen.png" density="land-hdpi"/>
+        <splash src="images/splashscreen.png" density="land-ldpi"/>
+        <splash src="images/splashscreen.png" density="land-mdpi"/>
+        <splash src="images/splashscreen.png" density="land-xhdpi"/>
+        <splash src="images/splashscreen.png" density="port-hdpi"/>
+        <splash src="images/splashscreen.png" density="port-ldpi"/>
+        <splash src="images/splashscreen.png" density="port-mdpi"/>
+        <splash src="images/splashscreen.png" density="port-xhdpi"/>
+
     
     <access origin="*"/>
     <allow-navigation href="*" />

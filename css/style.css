@@ -1692,3 +1692,30 @@ h3#totalFinalCarrinho span{
       text-decoration: none;
       border-radius: 100%; 
 }
+
+.remover-produto-carrinho{
+    position: absolute;
+    right: 7px;
+   z-index: 500;
+}
+
+.confirmacao-reserva{
+  text-align: center;
+  padding-top: 50px !important;
+  padding-bottom: 230px !important;
+}
+
+.confirmacao-reserva h1{
+    text-transform: uppercase !important;
+    font-size: 30px !important;
+}
+
+.confirmacao-reserva h1 i{
+    font-size: 48px;
+    color: #8BC34A;
+}
+
+.confirmacao-reserva h1 small{
+  display: block;
+  font-size: 13px;
+}
