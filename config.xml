@@ -39,10 +39,10 @@
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
     
     <plugin name="cordova-android-support-gradle-release">
-       <variable name="ANDROID_SUPPORT_VERSION" value="15.0.0"/>
+       <variable name="ANDROID_SUPPORT_VERSION" value="19.0.0"/>
     </plugin>
     
-    <preference name="android-minSdkVersion" value="15" />
+    <preference name="android-minSdkVersion" value="19" />
     <preference name="android-targetSdkVersion" value="29" />
        
     <preference name="phonegap-version" value="cli-9.0.0" />

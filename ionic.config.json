@@ -1,0 +1,7 @@
+{
+  "name": "com.diogenesjunior.orrameu",
+  "type": "custom",
+  "integrations": {
+    "cordova": {}
+  }
+}
