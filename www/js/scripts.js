@@ -47,6 +47,9 @@ function carregarInicio(){
     var obj = JSON.parse(localStorage.getItem("dadosUsuario"));
     console.log("DADOS JSON PARSE: ");
     console.log(obj);
+
+    // LINK DO CONTRATO
+    $("#btnContrato").attr("href","https://servidorseguro.cloud/orrameu/administrativo/contrato-cadastro.php?nome_usuario="+obj.dados[0].sobrenome+"&data_cadastro="+obj.dados[0].data_cadastro);
     
     // ALTERAR FOTO DE PERFIL
     if(obj.dados[0].foto_perfil!==null){
