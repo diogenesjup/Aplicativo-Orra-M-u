@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.diogenesjunior.orrameu"
-        version   = "1.36.0">
+        version   = "1.38.0">
 
     <name>Orra Mêu</name>
 
@@ -61,7 +61,7 @@
     
     
     <plugin name="cordova-plugin-globalization" />
-    <!--<plugin name="cordova-plugin-inappbrowser" />-->
+    <plugin name="cordova-plugin-inappbrowser" />
     <plugin name="cordova-plugin-media" />
     <plugin name="cordova-plugin-network-information" />
     <plugin name="cordova-plugin-splashscreen" />
