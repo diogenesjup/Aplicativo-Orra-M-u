@@ -49,9 +49,11 @@ function carregarInicio(){
     console.log(obj);
 
     // LINK DO CONTRATO
-    $("#btnContrato").attr("href","https://servidorseguro.cloud/orrameu/administrativo/contrato-cadastro.php?nome_usuario="+obj.dados[0].sobrenome+"&data_cadastro="+obj.dados[0].data_cadastro);
-                  
+    //$("#btnContrato").attr("href");
     
+    $("#btnContratoCaixaGrande").attr("onclick","window.open('https://servidorseguro.cloud/orrameu/administrativo/contrato-cadastro.php?nome_usuario="+obj.dados[0].sobrenome+"&data_cadastro="+obj.dados[0].data_cadastro+"', '_system'); return false;");
+     
+   
                   
     // ALTERAR FOTO DE PERFIL
     if(obj.dados[0].foto_perfil!==null){
