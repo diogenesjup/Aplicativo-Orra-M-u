@@ -49,7 +49,7 @@ function carregarInicio(){
     console.log(obj);
 
     // LINK DO CONTRATO
-    $("#btnContrato").attr("onclick","window.open('https://servidorseguro.cloud/orrameu/administrativo/contrato-cadastro.php?nome_usuario="+obj.dados[0].sobrenome+"&data_cadastro="+obj.dados[0].data_cadastro+"','_system'); return false;");
+    $("#btnContrato").attr("href","https://servidorseguro.cloud/orrameu/administrativo/contrato-cadastro.php?nome_usuario="+obj.dados[0].sobrenome+"&data_cadastro="+obj.dados[0].data_cadastro);
                   
     
                   
