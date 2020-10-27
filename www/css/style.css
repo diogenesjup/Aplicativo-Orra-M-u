@@ -472,7 +472,10 @@ jsv-content .item {
 
 
 
-
+.corpo-comum label{
+  color: #fff;
+  font-size: 14px;
+}
 
 
 .areas-login-cadastro{

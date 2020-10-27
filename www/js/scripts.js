@@ -44,6 +44,8 @@ function carregarInicio(){
     localStorage.setItem("valorCarrinho",0);
     localStorage.setItem("listaProdutosCheckout","[{}]");
 
+    var idUsuario = localStorage.getItem("idUsuario");
+
     var obj = JSON.parse(localStorage.getItem("dadosUsuario"));
     console.log("DADOS JSON PARSE: ");
     console.log(obj);
@@ -51,7 +53,7 @@ function carregarInicio(){
     // LINK DO CONTRATO
     //$("#btnContrato").attr("href");
     
-    $("#btnContratoCaixaGrande").attr("onclick","window.open('https://servidorseguro.cloud/orrameu/administrativo/contrato-cadastro.php?nome_usuario="+obj.dados[0].sobrenome+"&data_cadastro="+obj.dados[0].data_cadastro+"', '_system'); return false;");
+    $("#btnContratoCaixaGrande").attr("onclick","window.open('https://servidorseguro.cloud/orrameu/administrativo/contrato-cadastro.php?id="+idUsuario+"&nome_usuario="+obj.dados[0].sobrenome+"&data_cadastro="+obj.dados[0].data_cadastro+"', '_system'); return false;");
      
     /*
     $("#btnContratoCaixaGrande2").attr("onclick","window.open('https://servidorseguro.cloud/orrameu/administrativo/contrato-cadastro.php?nome_usuario="+obj.dados[0].sobrenome+"&data_cadastro="+obj.dados[0].data_cadastro+"', '_system'); return false;");
@@ -360,6 +362,9 @@ function procCadastro(){
          var cadastroNascimento = $("#cadastroNascimento").val();
          var cadastroSenha = $("#cadastroSenha").val();
 
+         var cadastroPeriodo = $("#cadastroPeriodo").val();
+         var cadastroFormaPagamento = $("#cadastroFormaPagamento").val();
+
          if(cadastroUsuario!=""&&cadastroEmail!=""&&cadastroNome!=""&&cadastroCelular!=""&&cadastroInstagram!=""&&cadastroSexo!=""&&cadastroNascimento!=""&&cadastroSenha!=""){
 
               // VERIFICAR SE O E-MAIL NÃO EXISTE
@@ -388,7 +393,7 @@ function procCadastro(){
                         var request = $.ajax({
                             method: "POST",
                             url: urlApi+"cadastro.php",
-                            data:{cadastroUsuario:cadastroUsuario,cadastroEmail:cadastroEmail,cadastroNome:cadastroNome,cadastroCelular:cadastroCelular,cadastroInstagram:cadastroInstagram,cadastroSexo:cadastroSexo,cadastroNascimento:cadastroNascimento,cadastroSenha:cadastroSenha}              
+                            data:{cadastroUsuario:cadastroUsuario,cadastroPeriodo:cadastroPeriodo,cadastroFormaPagamento:cadastroFormaPagamento,cadastroEmail:cadastroEmail,cadastroNome:cadastroNome,cadastroCelular:cadastroCelular,cadastroInstagram:cadastroInstagram,cadastroSexo:cadastroSexo,cadastroNascimento:cadastroNascimento,cadastroSenha:cadastroSenha}              
                         })
                         request.done(function (dados) {            
                             
@@ -542,7 +547,7 @@ function meusPagamentos(){
 
    // MONTAR O OWL CARROUSEL DESSA SESSÃO
 
-                                var listaDepagamentos = $('#listaDepagamentos').owlCarousel({
+                                var listaDepagamentos = $('#listaDepagamentosDISABLED').owlCarousel({
                                         loop:false,
                                         margin:6,
                                         items: 2,
@@ -601,12 +606,12 @@ function minhasAulas(){
                                         
                                 });
                                 // AGORA TEMOS ATÉ DOTS!!!
-                                $('#carousel-custom-dots .owl-dot').click(function () {
-                                  minhasAulasRegulares.trigger('to.owl.carousel', [$(this).index(), 300]);
-                                });
+                                //$('#carousel-custom-dots .owl-dot').click(function () {
+                                //  minhasAulasRegulares.trigger('to.owl.carousel', [$(this).index(), 300]);
+                                //});
 
 
-                                var minhasAulasSuplementares = $('#minhasAulasSuplementares').owlCarousel({
+                                var minhasAulasSuplementares = $('#minhasAulasSuplementaresDISABLED').owlCarousel({
                                         loop:false,
                                         margin:6,
                                         items: 1,
@@ -622,9 +627,9 @@ function minhasAulas(){
                                         
                                 });
                                 // AGORA TEMOS ATÉ DOTS!!!
-                                $('#carousel-custom-dots2 .owl-dot').click(function () {
-                                  minhasAulasSuplementares.trigger('to.owl.carousel', [$(this).index(), 300]);
-                                });
+                                //$('#carousel-custom-dots2 .owl-dot').click(function () {
+                                //  minhasAulasSuplementares.trigger('to.owl.carousel', [$(this).index(), 300]);
+                                //});
 
 }
 
@@ -692,18 +697,17 @@ function eventos(){
                   console.log("%c RETORNO DA API SOBRE A LISTA DE EVENTOS","background:#ff0000;color:#fff;");
                   console.log(dados);
 
-                  $("#carregandoEventos").fadeOut();
+                  if(dados.sucesso==200){
 
-                  console.log("QUANTIDADE DE EVENTOS: "+dados.dados.length);
+                                  $("#carregandoEventos").fadeOut();
 
-                  // ADICIONAR A LISTA
-                  arrayEventos = new ListaEventos();
-                  arrayEventos.adiciona(dados.dados);
-                  console.log("LISTA DE EVENTOS:");
-                  console.log(arrayEventos.eventos);
+                                  console.log("QUANTIDADE DE EVENTOS: "+dados.dados.length);
 
-                   if(dados.dados.length>0){
-
+                                  // ADICIONAR A LISTA
+                                  arrayEventos = new ListaEventos();
+                                  arrayEventos.adiciona(dados.dados);
+                                  console.log("LISTA DE EVENTOS:");
+                                  console.log(arrayEventos.eventos);
                                  var mesAnterior = "x";
                                  var mesAtual = "y";
                                  var controle = 0;
@@ -775,7 +779,8 @@ function eventos(){
 
 
                    }else{
-                      $("#eventosGerais").html(`<p style="text-align:center;>Nenhum evento ainda :(</p>`);
+                      
+                      $("#carregandoEventos").html(`Nenhum evento ainda :(`);
                    }
 
               });
@@ -855,7 +860,7 @@ function loja(){
                   if(dados.produtos.length>0){
                      $("#carregandoProdutos").remove();
                   }else{
-                     $("#carregandoProdutos").html("Nenhum produto cadastrado para mostrar.");
+                     $("#carregandoProdutos").html("Nenhum produto cadastrado ainda! Volte mais tarde.");
                   }
                    
                    // PERCORRER PRODUTOS

@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.diogenesjunior.orrameu"
-        version   = "1.43.0">
+        version   = "1.45.0">
 
     <name>Orra Mêu</name>
 
@@ -67,6 +67,7 @@
     <plugin name="cordova-plugin-splashscreen" />
     <plugin name="cordova-plugin-vibration" />
     <plugin name="cordova-plugin-statusbar" />
+    
     
     <feature name="Camera">
        <param name="android-package" value="org.apache.cordova.CameraLauncher" />
