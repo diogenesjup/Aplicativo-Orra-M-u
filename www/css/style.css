@@ -495,6 +495,8 @@ jsv-content .item {
 .form-group{
   padding-left: 30px;
   padding-right: 30px;
+  position: relative;
+  margin-bottom: 35px;
 }
 
 .form-control{
@@ -503,7 +505,47 @@ jsv-content .item {
   font-family: 'Roboto', sans-serif;
   padding-top: 8px;
   padding-bottom: 8px;
+  outline:none;
 }
+
+div.form-group span.placeholder {
+  position: absolute;
+    margin: 17px 0;
+    padding: 0 4px;
+    /* font-family: Roboto, sans-serif; */
+    color: #000;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    top: -9px;
+    left: 40px;
+    transition: all 0.2s;
+    transform-origin: 0% 0%;
+    background: none;
+    pointer-events: none;
+}
+
+
+div.form-group  .form-control:valid + span.placeholder,
+div.form-group  .form-control:focus + span.placeholder {
+transform: scale(0.8) translateY(-30px);
+background: none;
+    color: #fff;
+    left: 34px;
+    top: -16px;
+    font-size: 16px;
+}
+
+.actions-combos div.form-group  .form-control:valid + span.placeholder,
+.actions-combos div.form-group  .form-control:focus + span.placeholder {
+transform: scale(0.8) translateY(-30px);
+background: none;
+    color: #000;
+    left: 34px;
+    top: -16px;
+    font-size: 16px;
+}
+
 
 .form-control.form-control-bg-2{
   background: #ecb238;
@@ -886,8 +928,10 @@ select.form-control{
 }
 
 .area-contrato .caixa-pai-contrato .caixa-contrato .coluna-dois.positivo{
-  color: #487f1e !important;
+  color: #000 !important;
   font-size: 14.5px;
+  font-weight: bold;
+  padding-right: 15px;
 }
 
 
@@ -897,6 +941,7 @@ select.form-control{
     margin-left: 10px;
     float: right;
     margin-top: -6.5px;
+    cursor: pointer;
 }
 
 
@@ -1722,3 +1767,73 @@ h3#totalFinalCarrinho span{
   display: block;
   font-size: 13px;
 }
+
+
+
+
+
+.qpar{
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+}
+
+.qpar h1{
+      font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-style: oblique;
+    font-size: 24px;
+    line-height: 27px;
+}
+
+.qpar h4{
+      font-size: 14px;
+    font-weight: normal;
+    line-height: 18px;
+    opacity: 0.7;
+    margin-bottom: 28px;
+}
+
+.qpar .custom-control-label{
+    color: #000 !important;
+    font-weight: bold !important;
+    font-size: 15px !important;
+    text-transform: uppercase !important;
+    font-style: oblique !important;
+}
+
+
+.qpar-radio{
+       padding-left: 0px;
+    padding-right: 0px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid transparent !important;
+    padding-bottom: 16px;
+    padding-left: 0px !important;
+}
+
+.qpar-radio .form-group{
+         font-size: 12px;
+    line-height: 19px;
+    margin-bottom: 5px;
+    padding-left: 0px;
+    color: #000;
+    font-weight: normal;
+    opacity: 0.6;
+}
+
+
+.disclamer-qpar{
+    width: 100%;
+    display: block;
+    margin-bottom: 27px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 22px;
+    margin-top: 5px;
+    padding: 11px;
+    padding-top: 0px;
+    padding-bottom: 22px;
+    padding: 0px;
+    color: #000;
+}
+

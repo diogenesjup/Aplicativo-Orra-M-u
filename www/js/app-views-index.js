@@ -13,6 +13,18 @@ window.addEventListener('load', function() {
             template: 'views/viewCadastro.html',
             controller: 'viewCadastro'
         },
+        viewCadastroModalidades: {
+            url: '/viewCadastroModalidades',
+            template: 'views/viewCadastroModalidades.html',
+            controller: 'viewCadastroModalidades'
+        },
+        viewQPAR: {
+            url: '/viewQPAR',
+            template: 'views/viewQPAR.html',
+            controller: 'viewQPAR'
+        },
+
+        
         viewEsqueciSenha: {
             url: '/viewEsqueciSenha',
             template: 'views/viewEsqueciSenha.html',

@@ -18,6 +18,10 @@ function testeApi(){
 
                   console.log("%c VERIFICAÇÃO DE DISPONIBILIDADE DE API","background:#ff0000;color:#fff;");
                   console.log(dados);
+                  
+                  // SALVAR AS MODALIDADES NA MEMÓRIA
+                  localStorage.setItem("modalidades",JSON.stringify(dados.modalidades));
+                  localStorage.setItem("modalidades_valores",JSON.stringify(dados.modalidades_valores));
 
               });
               request.fail(function (dados) {
@@ -336,22 +340,24 @@ function procLogin(){
   }
 
 
+
+
 // PROCESSAR CADASTRO
-function procCadastro(){
+function procCadastroFase1(){
 
   console.log("INICIANDO FUNÇÃO PARA PROCESSAR O CADASTRO");
 
   $("#procCadastro").html("Processando...");
 
-	var cadastroSenha = $("#cadastroSenha").val();
+  var cadastroSenha = $("#cadastroSenha").val();
   var cadastroSenhaConfirmar = $("#cadastroSenhaConfirmar").val();
 
     if(cadastroSenha!=cadastroSenhaConfirmar){
-    	
+      
       aviso("Oops! Temos um problema.","As senhas informadas precisam ser iguais! Verifique os dados inseridos e tente novamente.");
       $("#procCadastro").html("Cadastrar");
     
-    }else{    	   
+    }else{         
 
          var cadastroUsuario = $("#cadastroUsuario").val();
          var cadastroEmail = $("#cadastroEmail").val();
@@ -361,13 +367,14 @@ function procCadastro(){
          var cadastroSexo = $("#cadastroSexo").val();
          var cadastroNascimento = $("#cadastroNascimento").val();
          var cadastroSenha = $("#cadastroSenha").val();
-
+         
+         /*
          var cadastroPeriodo = $("#cadastroPeriodo").val();
          var cadastroFormaPagamento = $("#cadastroFormaPagamento").val();
+         */
 
          if(cadastroUsuario!=""&&cadastroEmail!=""&&cadastroNome!=""&&cadastroCelular!=""&&cadastroInstagram!=""&&cadastroSexo!=""&&cadastroNascimento!=""&&cadastroSenha!=""){
-
-              // VERIFICAR SE O E-MAIL NÃO EXISTE
+         
               // INICIO CHAMADA AJAX
               var request = $.ajax({
                   method: "POST",
@@ -384,16 +391,251 @@ function procCadastro(){
                      console.log(dados);
 
                   }else{
-                    //location.href="dashboard.html";
+                      
+                      localStorage.setItem("cadastroUsuario",cadastroUsuario);
+                      localStorage.setItem("cadastroEmail",cadastroEmail);
+                      localStorage.setItem("cadastroNome",cadastroNome);
+                      localStorage.setItem("cadastroCelular",cadastroCelular);
+                      localStorage.setItem("cadastroInstagram",cadastroInstagram);
+                      localStorage.setItem("cadastroSexo",cadastroSexo);
+                      localStorage.setItem("cadastroNascimento",cadastroNascimento);
+                      localStorage.setItem("cadastroSenha",cadastroSenha);
 
-                        console.log("RETORNO DOS DADOS CONSULTA EMAIL OU CELULAR JÁ CADASTRADO");
-                        console.log(dados);
+                      console.log("DIRECIONANDO O USUÁRIO PARA A SEQUÊNCIA DO CADASTRO");
 
+                      cadastroModalidades();
+
+
+                  } // FINAL ELSE VERIFICAÇÃO USUARIO DUPLICADO
+         
+
+                  });
+              request.fail(function (dados) {
+                               
+                     console.log("NÃO FOI POSSÍVEL FAZER O CADASTRO (procCadastroFase1)");
+                     console.log(dados);
+                     aviso("Oops! Temos um problema","Não conseguimos comunicação com o servidor. Tente novamente depois de alguns minutos.");
+                     $("#procCadastro").html("Próximo passo");
+
+              }); // FINAL AJAX 
+
+
+         }else{
+
+            aviso("Oops! Todos os campos são obrigatórios","Verifique se preencheu todos os campos e tente novamente");
+            $("#procCadastro").html("Próximo passo");
+         }
+
+    }
+  
+
+
+}
+
+
+
+function cadastroModalidades(){
+  
+  var modalidades = JSON.parse(localStorage.getItem("modalidades"));
+  var modalidades_valores = JSON.parse(localStorage.getItem("modalidades_valores"));
+
+  console.log("MODALIDADES RECUPERADAS: ");
+  console.log(modalidades);
+
+  console.log("MODALIDADES VALORES RECUPERADAS: ");
+  console.log(modalidades_valores); 
+
+  $JSView.goToView('viewCadastroModalidades');
+
+  aviso("Selecione uma modalidade","Agora, selecione uma modalidade e o número de aulas por semana.");
+
+  for(var i = 0;i<modalidades.length;i++){
+    $("#inputAddListaModalidade").append(`<option value="${modalidades[i].id}">${modalidades[i].nome_modalidade}</option>`);
+  }
+
+
+}
+
+function getNumeroAulasModalidade(){
+  
+  var modalidades = JSON.parse(localStorage.getItem("modalidades"));
+  var modalidades_valores = JSON.parse(localStorage.getItem("modalidades_valores"));
+  
+  var modalidade = $("#inputAddListaModalidade").val();
+
+  var aulasDisponiveisModalidade = 0;
+
+  if(modalidade!=""){
+
+    $(".ld").removeClass("ld");
+
+    for(var i = 0;i<modalidades.length;i++){
+
+      if(modalidades[i].id==modalidade){
+         
+         if(modalidades[i].segunda_inicio!=""){ aulasDisponiveisModalidade++; } 
+         if(modalidades[i].terca_inicio!=""){ aulasDisponiveisModalidade++; } 
+         if(modalidades[i].quarta_inicio!=""){ aulasDisponiveisModalidade++; } 
+         if(modalidades[i].quinta_inicio!=""){ aulasDisponiveisModalidade++; } 
+         if(modalidades[i].sexta_inicio!=""){ aulasDisponiveisModalidade++; } 
+         if(modalidades[i].sabado_inicio!=""){ aulasDisponiveisModalidade++; } 
+         if(modalidades[i].domingo_inicio!=""){ aulasDisponiveisModalidade++; } 
+
+      }
+
+    }
+
+    $("#inputAddAulasSemana").html("");
+    $("#inputAddAulasSemana").append(`<option value="">Número de aulas por semana</option>`);
+
+    var a = 0;
+    var aula = 1;
+    while(a<aulasDisponiveisModalidade){
+        
+      $("#inputAddAulasSemana").append(`<option value="${aula}">${aula}</option>`);
+
+      a++;
+      aula++;
+    }
+
+  }else{
+    aviso("Selecione uma modalidade","Selecione ao menos uma modalidade antes de continuar");
+  }
+
+}
+
+function addModalidadeCadastro(){
+
+  if($("#inputAddListaModalidade").val()!="" && $("#inputAddAulasSemana").val()!=""){
+
+      cancelarActionCombo();
+
+
+
+      localStorage.setItem("modalidadeCadastro",$("#inputAddListaModalidade").val());
+      localStorage.setItem("modalidadeNumAulasCadastro",$("#inputAddAulasSemana").val());
+      
+      var modalidade = $("#inputAddListaModalidade").val();
+      var modalidadeAulas = $("#inputAddAulasSemana").val();
+
+      $("#saidaModalidade").html(`${$("#inputAddListaModalidade option:selected").text()} (${modalidadeAulas} aulas por semana)`);
+       
+      $("#saidaModalidade").append(`
+      
+            <a href="javascript:void(0)" onclick="adicionarNovaModalidade();">
+                   <label style="display: unset;">
+                       <img src="images/editar-modalidade.png" style="margin-right: 5px;" alt="Editar modalidade">
+                   </label>
+            </a>
+
+      `); 
+ 
+      $(".add-mais-modalidades").fadeOut();
+
+      atualizarValorPlanoCadastro();
+
+
+  }else{
+
+    aviso("Selecione uma modalidade e um número de aulas!","Selecione ao menos uma modalidade e o número de aulas por semana, antes de continuar");
+  }
+
+  
+
+}
+
+function atualizarValorPlanoCadastro(){
+
+  var modalidadeCadastro = localStorage.getItem("modalidadeCadastro");
+  var modalidadeNumAulasCadastro = localStorage.getItem("modalidadeNumAulasCadastro");
+
+  var modalidades = JSON.parse(localStorage.getItem("modalidades"));
+  var modalidades_valores = JSON.parse(localStorage.getItem("modalidades_valores"));
+
+  var plano = $("#mudarPeriodoPlano").val();
+
+  localStorage.setItem("cadastroPlano",plano);
+
+  for(var i = 0;i<modalidades_valores.length;i++){
+     
+     if(modalidades_valores[i].id_modalidade==modalidadeCadastro && 
+        modalidades_valores[i].x_semana == modalidadeNumAulasCadastro+"x" &&
+        modalidades_valores[i].periodo == plano){
+
+         $(".linha-cpc-valor span").html(`R$ ${modalidades_valores[i].valor}`);
+
+     }
+
+  }
+
+}
+
+
+function procCadastroFase2(){
+
+    localStorage.setItem("cadastroFormaPagamento",$("#cadastroFormaPagamento").val());
+  
+    $JSView.goToView('viewQPAR');
+
+
+}
+
+
+function procCadastro(){
+
+  console.log("INICIANDO FUNÇÃO PARA PROCESSAR O CADASTRO");
+
+  $("#procCadastro3").html("Processando...");
+
+         var cadastroUsuario = localStorage.getItem("cadastroUsuario");
+         var cadastroEmail = localStorage.getItem("cadastroEmail");
+         var cadastroNome = localStorage.getItem("cadastroNome");
+         var cadastroCelular = localStorage.getItem("cadastroCelular");
+         var cadastroInstagram = localStorage.getItem("cadastroInstagram");
+         var cadastroSexo = localStorage.getItem("cadastroSexo");
+         var cadastroNascimento = localStorage.getItem("cadastroNascimento");
+         var cadastroSenha = localStorage.getItem("cadastroSenha");
+
+         var modalidadeNumAulasCadastro = localStorage.getItem("modalidadeNumAulasCadastro");
+         var modalidadeCadastro = localStorage.getItem("modalidadeCadastro");
+         var cadastroPlano = localStorage.getItem("cadastroPlano");
+         var cadastroFormaPagamento = localStorage.getItem("cadastroFormaPagamento");
+
+         var qpar1 = $("#qpar1").val();
+         var qpar1b = $("#qpar1-b").val();
+
+         var qpar2 = $("#qpar2").val();
+         var qpar2b = $("#qpar2-b").val();
+
+         var qpar3 = $("#qpar3").val();
+         var qpar3b = $("#qpar3-b").val();
+
+         var qpar4 = $("#qpar4").val();
+         var qpar4b = $("#qpar4-b").val();
+
+         var qpar5 = $("#qpar5").val();
+         var qpar5b = $("#qpar5-b").val();
+
+         var qpar6 = $("#qpar6").val();
+         var qpar6b = $("#qpar6-b").val();
+
+         var qpar7 = $("#qpar7").val();
+        var qpar7b = $("#qpar7-b").val();
+
+        if($('input[name=qpar1]:checked').val()=="nao" && 
+           $('input[name=qpar2]:checked').val()=="nao" && 
+           $('input[name=qpar3]:checked').val()=="nao" && 
+           $('input[name=qpar4]:checked').val()=="nao" && 
+           $('input[name=qpar5]:checked').val()=="nao" && 
+           $('input[name=qpar6]:checked').val()=="nao" && 
+           $('input[name=qpar7]:checked').val()=="nao"){
+
+         
                         // INICIO CHAMADA AJAX
                         var request = $.ajax({
                             method: "POST",
                             url: urlApi+"cadastro.php",
-                            data:{cadastroUsuario:cadastroUsuario,cadastroPeriodo:cadastroPeriodo,cadastroFormaPagamento:cadastroFormaPagamento,cadastroEmail:cadastroEmail,cadastroNome:cadastroNome,cadastroCelular:cadastroCelular,cadastroInstagram:cadastroInstagram,cadastroSexo:cadastroSexo,cadastroNascimento:cadastroNascimento,cadastroSenha:cadastroSenha}              
+                            data:{cadastroUsuario:cadastroUsuario,modalidadeCadastro:modalidadeCadastro,modalidadeNumAulasCadastro:modalidadeNumAulasCadastro,cadastroPeriodo:cadastroPlano,cadastroFormaPagamento:cadastroFormaPagamento,cadastroEmail:cadastroEmail,cadastroNome:cadastroNome,cadastroCelular:cadastroCelular,cadastroInstagram:cadastroInstagram,cadastroSexo:cadastroSexo,cadastroNascimento:cadastroNascimento,cadastroSenha:cadastroSenha}              
                         })
                         request.done(function (dados) {            
                             
@@ -417,7 +659,7 @@ function procCadastro(){
                               console.log("NÃO FOI POSSÍVEL FAZER O CADASTRO (procCadastro)");
                               console.log(dados);
                               aviso("Oops! Temos um problema","Não conseguimos comunicação com o servidor. Tente novamente depois de alguns minutos.");
-                              $("#procCadastro").html("Cadastrar");
+                              $("#procCadastro3").html("Finalizar");
                             }                            
                             
                         });
@@ -426,28 +668,16 @@ function procCadastro(){
                              console.log("NÃO FOI POSSÍVEL FAZER O CADASTRO (procCadastro)");
                              console.log(dados);
                              aviso("Oops! Temos um problema","Não conseguimos comunicação com o servidor. Tente novamente depois de alguns minutos.");
-                             $("#procCadastro").html("Cadastrar");
+                             $("#procCadastro3").html("Finalizar");
 
                         });
                         // FINAL CHAMADA AJAX
+          }else{
+             
+             aviso("Oops!","Parece que você não está apto para a prática de atividades físicas! Recomendamos que antes da prática de exercícios, você procure orientações médicas.");
+             $("#procCadastro3").html("Finalizar");
+          }
 
-
-         } // FINAL ELSE
-         
-
-   });
-                        request.fail(function (dados) {
-                               
-                             console.log("NÃO FOI POSSÍVEL FAZER O CADASTRO (procCadastro)");
-                             console.log(dados);
-                             aviso("Oops! Temos um problema","Não conseguimos comunicação com o servidor. Tente novamente depois de alguns minutos.");
-                             $("#procCadastro").html("Cadastrar");
-
-                        }); // FINAL AJAX PAI
-
-       } // IF CAMPOS VAZIOS
-
-   } //ELSE
 
 } // FUNÇÃO
 
@@ -1165,10 +1395,23 @@ function redirecionarLogin(){
 function redirecionarCadastro(){
 
 	$JSView.goToView('viewCadastro');
-	carregarMascaras();
-
-
 	
+
+  if(localStorage.getItem("cadastroUsuario")!==null){
+     
+         $("#cadastroUsuario").val(localStorage.getItem("cadastroUsuario"));
+         $("#cadastroEmail").val(localStorage.getItem("cadastroEmail"));
+         $("#cadastroNome").val(localStorage.getItem("cadastroNome"));
+         $("#cadastroCelular").val(localStorage.getItem("cadastroCelular"));
+         $("#cadastroInstagram").val(localStorage.getItem("cadastroInstagram"));
+         $("#cadastroSexo").val(localStorage.getItem("cadastroSexo"));
+         $("#cadastroNascimento").val(localStorage.getItem("cadastroNascimento"));
+         $("#cadastroSenha").val(localStorage.getItem("cadastroSenha"));
+
+  }
+
+  carregarMascaras();
+
 }
 
 // REDIRECIONAR PARA TELA DE ESQUECI SENHA

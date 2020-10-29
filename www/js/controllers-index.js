@@ -5,6 +5,15 @@ $JSView.controller = {
 	viewCadastro: function(e){
 		$JSView.dataView({},e)
 	},
+	viewCadastroModalidades: function(e){
+		$JSView.dataView({},e)
+	},
+	viewQPAR: function(e){
+		$JSView.dataView({},e)
+	},
+	
+
+	
 	viewEsqueciSenha: function(e){
 		$JSView.dataView({},e)
 	},

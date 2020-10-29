@@ -45,67 +45,103 @@
                   <!-- CONTEÚDO -->
                   <div class="corpo-comum ajuste-margem-header">
                     <div class="container conteudo areas-login-cadastro area-cadastro">
-                                               
+                      
+                      <form>                         
 
                          <div class="form-group">
-                            <input type="text" id="cadastroUsuario" class="form-control" placeholder="Usuário / Apelido" autocomplete="new-text">
+                            <input type="text" id="cadastroUsuario" class="form-control" required  data-placeholder="Usuário / Apelido" autocomplete="new-text">
+                            <span class="placeholder">
+                              Usuário
+                            </span>
                          </div>
 
                          <div class="form-group">
-                            <input type="text" id="cadastroEmail" class="form-control" placeholder="E-mail" autocomplete="new-text">
+                            <input type="email" id="cadastroEmail" class="form-control" required data-placeholder="E-mail" autocomplete="new-text">
+                            <span class="placeholder">
+                              E-mail
+                            </span>
                          </div>
 
                           <div class="form-group">
-                            <input type="text" id="cadastroNome" class="form-control" placeholder="Nome e Sobrenome" autocomplete="new-text">
+                            <input type="text" id="cadastroNome" class="form-control" required data-placeholder="Nome e Sobrenome" autocomplete="new-text">
+                            <span class="placeholder">
+                              Nome completo
+                            </span>
                          </div>
 
                           <div class="form-group">
-                            <input type="text" id="cadastroCelular" class="form-control" placeholder="Celular" autocomplete="new-text">
+                            <input type="text" id="cadastroCelular" class="form-control" required data-placeholder="Celular" autocomplete="new-text">
+                            <span class="placeholder">
+                              Celular
+                            </span>
                          </div>
 
                           <div class="form-group">
-                            <input type="text" id="cadastroInstagram" class="form-control" placeholder="Instagram" autocomplete="new-text">
+                            <input type="text" id="cadastroInstagram" class="form-control" required data-placeholder="Instagram" autocomplete="new-text">
+                            <span class="placeholder">
+                              Instagram
+                            </span>
                          </div>
 
                           <div class="form-group">
-                            <select name="genero" id="cadastroSexo" class="form-control">
-                              <option value="">Sexo</option>
+                            <select name="genero" id="cadastroSexo" required class="form-control">
+                              <option value=""></option>
                               <option value="Masculino">Masculino</option>
                               <option value="Feminino">Feminino</option>
                             </select> 
+                            <span class="placeholder">
+                              Sexo
+                            </span>
                          </div>
 
                           <div class="form-group">
-                            <input type="text" id="cadastroNascimento" class="form-control" placeholder="Data Nascimento" autocomplete="new-text">
+                            <input type="text" id="cadastroNascimento" required class="form-control" data-placeholder="Data Nascimento" autocomplete="new-text">
+                            <span class="placeholder">
+                              Data de nascimento
+                            </span>
                            </div>
 
                            <div class="form-group">
-                              <input type="password" id="cadastroSenha" class="form-control" placeholder="Senha" autocomplete="new-password">
+                              <input type="password" id="cadastroSenha" required class="form-control" data-placeholder="Senha" autocomplete="new-password">
+                              <span class="placeholder">
+                              Senha
+                            </span>
                            </div>
 
                            <div class="form-group">
-                              <input type="password" id="cadastroSenhaConfirmar" class="form-control" placeholder="Confirme a Senha" autocomplete="new-password">
+                              <input type="password" id="cadastroSenhaConfirmar" required class="form-control" data-placeholder="Confirme a Senha" autocomplete="new-password">
+                              <span class="placeholder">
+                              Confirmar senha
+                            </span>
                            </div>
 
-                           
+                           <!--
 
                             <div class="form-group">
-                              <select name="cadastroFormaPagamento" id="cadastroFormaPagamento" class="form-control">
-                                <option value="">Forma de pagamento</option>
+                              <select name="cadastroFormaPagamento" id="cadastroFormaPagamento" required class="form-control">
+                                <option value=""></option>
                                 <option value="boleto">Boleto</option>
                                 <option value="cartao_credito">Cartão de Crédito</option>
                                 <option value="cartao_debito">Cartão de Débito</option>
                               </select> 
+                              <span class="placeholder">
+                              Forma de pagamento
+                            </span>
                           </div>
 
                             <div class="form-group">
-                              <select name="cadastroPeriodo" id="cadastroPeriodo" class="form-control">
-                                <option value="">Períodicidade do pagamento</option>
+                              <select name="cadastroPeriodo" id="cadastroPeriodo" required class="form-control">
+                                <option value=""></option>
                                 <option value="mensal">Mensal</option>
                                 <option value="trimestral">Trimestral</option>
                                 <option value="anual">Anual</option>
                               </select> 
+                              <span class="placeholder">
+                              Periodicidade do pagamento
+                            </span>
                           </div>
+
+                        -->
 
 
                            <div class="form-group">
@@ -118,8 +154,11 @@
                            </div>
 
 
+                       </form>
+
+
                          <div class="form-group" style="padding-top: 20px;padding-bottom: 20px;">
-                           <button type="submit" class="btn btn-primary" id="procCadastro" onclick="procCadastro();">Cadastrar</button>
+                           <button type="submit" class="btn btn-primary" id="procCadastro" onclick="procCadastroFase1();">Próximo passo</button>
                          </div>
 
                          

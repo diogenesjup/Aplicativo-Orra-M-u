@@ -1,0 +1,189 @@
+<jsv-header>
+	<button-header-left></button-header-left>
+       Cadastro Modalidades
+    <button-header-right></button-header-right>
+</jsv-header>
+<jsv-content class="inicio">
+   
+            <!-- PAGE CONTENT FIM -->
+            <div class="page-content">
+
+                 
+                  <!-- HEADER -->
+                  <header>
+                    <div class="container">
+                      
+                      <div class="row">
+                        
+                        <div class="col-3 coluna-um">
+                           <a href="javascript:void(0)" title="Voltar para a página de login" onclick="redirecionarCadastro();">
+                             <i class="fa fa-angle-left"></i>
+                           </a>
+                        </div>
+
+
+                        <div class="col-6 coluna-dois">
+                          
+                          <a href="javascript:void(0)" title="Orra Meu - Sua praia na Mooca" style="line-height: 18px;display: block;padding-top: 2px;">
+                           Modalidades
+                          </a>
+
+                        </div>
+
+                        <div class="col-3 coluna-tres" style="opacity: 0;">
+                           <i class="fa fa-bell"></i>
+                           <span class="numeroNotificacoes">0</span>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </header>
+                  <!-- HEADER -->
+
+
+                  <!-- CONTEÚDO -->
+                  <div class="corpo-comum ajuste-margem-header">
+                    <div class="container conteudo areas-login-cadastro area-cadastro area-contrato">
+                      
+                      <form>                         
+
+                                 <!-- AREA APPEND CONTRATOS -->
+                                 <div id="appendItensContrato">
+                                     
+                                     <div id="cpc" class="row caixa-pai-contrato contadores-de-caixa ultima-caixa">
+                                          <div class="caixa-contrato">
+                                              <div class="row">
+                                                  <div class="col-sm-12 col-12 coluna-um" id="saidaModalidade"> 
+                                                     Nenhuma modalidade 
+
+                                                  </div>
+                                                  
+                                              </div>
+                                          </div>
+                                          <div class="add-mais-modalidades"> 
+                                            <a href="javascript:void(0)" title="Adicionar Modalidade" onclick="adicionarNovaModalidade();"> 
+                                                  <img class="ld ld-pulse" src="images/adicionar-modalidade.png" alt="Adicionar modalidade">
+                                             </a> 
+                                          </div>
+                                      </div>
+
+                                 </div>
+                                 <!-- AREA APPEND CONTRATOS -->
+
+
+
+                                 <!-- LINHA CPC --> 
+                                 <div id="cpc3" class="row caixa-pai-contrato linha-cpc-planos">
+                                      <!-- PERIODICIDADE -->
+                                      <div class="caixa-contrato">
+                                         <div class="row">
+                                            <!-- COLUNA LABEL -->
+                                            <div class="col-sm-6 col-6 coluna-um">
+                                               Plano:
+                                            </div>
+                                            <div class="col-sm-6 col-6 coluna-dois">
+                                                <span id="nomePlanoEscondido">MENSAL</span> 
+                                                <a href="javascript:void(0)">
+                                                  <label style="display: unset;" for="mudarPeriodoPlano">
+                                                     <img src="images/editar-modalidade.png" alt="Editar periodicidade do plano">
+                                                   </label>
+                                                </a>
+
+                                               <select id="mudarPeriodoPlano" style="display: block;width: 0;height: 0;opacity: 0;" onchange="atualizarValorPlanoCadastro()">
+                                                  <option value="MENSAL">Mensal</option>
+                                                  <option value="TRIMESTRAL">Trimestral</option>
+                                                  <option value="SEMESTRAL">Semestral</option>
+                                                  <option value="ANUAL">Anual</option>
+                                               </select>
+
+                                            </div>
+                                            <!-- COLUNA LABEL -->
+                                         </div>
+                                      </div>
+                                      <!-- PERIODICIDADE -->      
+                                      <!-- VALOR MENSAL -->   
+                                      <div class="caixa-contrato linha-cpc-valor">
+                                         <div class="row">
+                                            <!-- COLUNA LABEL -->
+                                            <div class="col-sm-6 col-6 coluna-um">
+                                               Valor:
+                                            </div>
+                                            <div class="col-sm-6 col-6 coluna-dois positivo">
+                                               <span>R$ 0,00</span> 
+                                            </div>
+                                            <!-- COLUNA LABEL -->
+                                         </div>
+                                      </div>
+                                      <!-- VALOR MENSAL -->  
+                                                                     
+                                 </div>
+                                 <!-- LINHA CPC -->
+
+                                 <div class="form-group">
+                                  <label>Forma de pagamento</label>
+                                  <select name="cadastroFormaPagamento" id="cadastroFormaPagamento" required class="form-control">
+                                    <option value="boleto">Boleto</option>
+                                    <option value="cartao_credito">Cartão de Crédito</option>
+                                    <option value="cartao_debito">Cartão de Débito</option>
+                                  </select> 
+                                  
+                              </div>
+                            
+                            <!--
+                            <div class="form-group">
+                              <select name="cadastroPeriodo" id="cadastroPeriodo" required class="form-control">
+                                <option value=""></option>
+                                <option value="mensal">Mensal</option>
+                                <option value="trimestral">Trimestral</option>
+                                <option value="anual">Anual</option>
+                              </select> 
+                              <span class="placeholder">
+                              Periodicidade do pagamento
+                            </span>
+                          </div>
+
+                            
+                          -->
+
+
+                           <!--
+                           <div class="form-group">
+                             
+                             <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                <label class="custom-control-label" for="customSwitch1">Desejo receber novidades do Ôrra Mêu</label>
+                              </div>
+
+                           </div>
+                           -->
+
+
+                       </form>
+
+
+                         <div class="form-group" style="padding-top: 20px;padding-bottom: 20px;">
+                           <button type="submit" class="btn btn-primary" id="procCadastro2" onclick="procCadastroFase2();">Próximo passo</button>
+                         </div>
+
+                         
+
+                    </div>
+                  </div>
+                  <!-- CONTEÚDO -->
+                  
+
+                  
+              
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+              <br clear="both">
+
+              
+               
+            </div>
+            <!-- PAGE CONTENT FIM -->
+    
+</jsv-content>
